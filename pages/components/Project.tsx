@@ -2,11 +2,11 @@ import Divider from './Divider';
 import BtLine from './BtLine';
 
 export const Project = ({ project }): JSX.Element => {
-  const title = project.title;
-  const content = project.content;
-  const link = project.link;
-  const date = project.date;
-  const skills = project.skills;
+  const title = project?.title;
+  const content = project?.content;
+  const link = project?.link;
+  const date = project?.date;
+  const skills = project?.skills;
 
   return (
     <div>

@@ -1,12 +1,12 @@
-import { format, parseISO } from 'date-fns';
-import { GetStaticProps } from 'next';
-import React from 'react';
-import Top from './components/Top';
-import Header from './components/Header';
-import Divider from './components/Divider';
-import Layout from '../components/Layout';
-import { getAllPosts } from '../lib/api';
-import { PostType } from '../types/post';
+import { format, parseISO } from "date-fns";
+import { GetStaticProps } from "next";
+import React from "react";
+import Top from "./components/Top";
+import Header from "./components/Header";
+import Divider from "./components/Divider";
+import Layout from "../components/Layout";
+import { getAllPosts } from "../lib/api";
+import { PostType } from "../types/post";
 
 type IndexProps = {
   posts: PostType[];
@@ -28,10 +28,10 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
       </div>
       <br />
       <p>
-        Hi, I am{' '}
+        Hi, I am{" "}
         <strong>
           <i>Foodchain, aka Fu-Chuan Chung (鍾富全 in Mandarin), Jeff</i>
-        </strong>{' '}
+        </strong>{" "}
         from Kaohsiung, Taiwan.
       </p>
 
@@ -129,7 +129,7 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
       <h2 className="dark:text-yellow-200">Education</h2>
       <br />
       <h3>
-        {' '}
+        {" "}
         <b> Lectures </b>
       </h3>
       <ul className="list-disc pl-4 my-6">
@@ -145,7 +145,7 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
       <h2 className="dark:text-yellow-200">Experience</h2>
       <ul className="list-disc pl-4 my-6">
         <li>
-          2023 Feb. ~ 2023 May. -- Software Engineer Intern{' '}
+          2023 Feb. ~ 2023 May. -- Software Engineer Intern{" "}
           <i>@Create Intelligens Inc.</i>
         </li>
         <li>
@@ -158,11 +158,11 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
       <h2 className="dark:text-yellow-200">Awards</h2>
       <ul className="list-disc pl-4 my-6">
         <li>
-          2022 Dec. -- (Silver) Roadmap to DApp Developer{' '}
+          2022 Dec. -- (Silver) Roadmap to DApp Developer{" "}
           <i>@IT-30-day challenge contest</i>
         </li>
         <li>
-          2022 Oct. -- (Second Prize) LW3DAO Voting System{' '}
+          2022 Oct. -- (Second Prize) LW3DAO Voting System{" "}
           <i>@Hacktomount 3.0 Hackathon</i>
         </li>
       </ul>
@@ -174,7 +174,7 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = getAllPosts(['date', 'description', 'slug', 'title']);
+  const posts = getAllPosts(["date", "description", "slug", "title"]);
 
   return {
     props: { posts },

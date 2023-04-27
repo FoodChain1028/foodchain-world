@@ -1,18 +1,18 @@
-import NextHead from 'next/head';
-import { useRouter } from 'next/router';
-import React from 'react';
-import { MetaProps } from '../types/layout';
+import NextHead from "next/head";
+import { useRouter } from "next/router";
+import React from "react";
+import { MetaProps } from "../types/layout";
 
-export const WEBSITE_HOST_URL = 'https://foodchain.eth.xyz';
+export const WEBSITE_HOST_URL = "https://foodchain.eth.xyz";
 
 const Head = ({ customMeta }: { customMeta?: MetaProps }): JSX.Element => {
   const router = useRouter();
   const meta: MetaProps = {
-    title: 'Foodchain1028 🏝️ Portfolio',
+    title: "Foodchain1028 🏝️ Portfolio",
     description:
-      'Blockchain Developer and Researcher. Ditto Lover. Jazz Lover.',
+      "Blockchain Developer and Researcher. Ditto Lover. Jazz Lover.",
     image: `https://imgur.com/HeZOusW`,
-    type: 'website',
+    type: "website",
     ...customMeta,
   };
 

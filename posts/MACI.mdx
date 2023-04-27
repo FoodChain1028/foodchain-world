@@ -1,7 +1,7 @@
 ---
 title: Introduction of MACI
 description: 在區塊鏈投票時，常會發生「共謀」的現象（最常見的就是賄賂），而為了遏止此現象的發生，Barry White Hat 與 Ethereum 中其他成員建構了 MACI 這個 protocol...
-date: '2023-02-04'
+date: "2023-02-04"
 ---
 
 ## Minimum Anti-Collusion Infrastructure (MACI)
@@ -11,8 +11,6 @@ date: '2023-02-04'
 Author: Fu-Chuan Chung @swfLAB
 
 Special thanks to @ for reviewing this article
-
- 
 
 ## 建議具備知識
 
@@ -32,14 +30,14 @@ Special thanks to @ for reviewing this article
 
 ## 簡介
 
-MACI 的全名為 Minimum Anti-collusion Infrastructure，最初由 *Vitalik* 在[這篇貼文](https://ethresear.ch/t/minimal-anti-collusion-infrastructure/5413)提出，想法源自解決在區塊鏈上[共謀](https://vitalik.ca/general/2019/04/03/collusion.html)（中文版詳見[此](https://cla2srbchi.medium.com/%E7%BF%BB%E8%AD%AF-vitalik-on-collusion-%E8%AB%96%E5%85%B1%E8%AC%80-8ecd4e012266)）的問題，後續主要由 *BarryWhiteHat* 與 *Kendrick Tan, Kobi Gurkan* 和 *Koh Wei Jie* 等人共同開發。
+MACI 的全名為 Minimum Anti-collusion Infrastructure，最初由 _Vitalik_ 在[這篇貼文](https://ethresear.ch/t/minimal-anti-collusion-infrastructure/5413)提出，想法源自解決在區塊鏈上[共謀](https://vitalik.ca/general/2019/04/03/collusion.html)（中文版詳見[此](https://cla2srbchi.medium.com/%E7%BF%BB%E8%AD%AF-vitalik-on-collusion-%E8%AB%96%E5%85%B1%E8%AC%80-8ecd4e012266)）的問題，後續主要由 _BarryWhiteHat_ 與 _Kendrick Tan, Kobi Gurkan_ 和 _Koh Wei Jie_ 等人共同開發。
 
 ## 共謀
 
 > 為了避免產生語意上的差異，先說明關於一些名詞的解釋，我也會用圖案來呈現兩者差異
-> 
-- 😈 行賄者 = 操縱者 = 意圖改變投票結果的人。
-- 🤑 受賄者 = 投票者 = 可以透過投票獲得來自行賄者利益的人。
+
+- 😈  行賄者 = 操縱者 = 意圖改變投票結果的人。
+- 🤑  受賄者 = 投票者 = 可以透過投票獲得來自行賄者利益的人。
 
 **在深入介紹 MACI 之前，需要先理解何謂共謀（collusion）？**
 
@@ -60,23 +58,23 @@ contract Voting {
   mapping (bytes32 => bool) public candidateList;
 
   /* constructor input example:
-    // John, Alice, Bob after keccak256  
+    // John, Alice, Bob after keccak256
     [
-			0x0bfa36c40b8771f59912a8b06e3ba9cd68504e69345a0ebcb952c3c6100ec88e, 
-			0x6070f87e7650727769f301b1e264c58d77a49792dc17c13fe3cb44a9bb1f7b44,  
+			0x0bfa36c40b8771f59912a8b06e3ba9cd68504e69345a0ebcb952c3c6100ec88e,
+			0x6070f87e7650727769f301b1e264c58d77a49792dc17c13fe3cb44a9bb1f7b44,
 			0x780641b8ceca510c40f5f0178d126444811cc3e3edf7fa86f3656f77615dcc5c
-		], 
+		],
     [
-			0xB5e30182B2EC04A58C8dFaB9f0E42Bbd5a551618, 
-			0x5B38Da6a701c568545dCfcB03FcB875f56beddC4, 
-			0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2, 
+			0xB5e30182B2EC04A58C8dFaB9f0E42Bbd5a551618,
+			0x5B38Da6a701c568545dCfcB03FcB875f56beddC4,
+			0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2,
 			0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db
 		]
   */
   constructor(bytes32[] memory _candidateNames, address[] memory _voters) {
     for (uint8 i = 0; i < _candidateNames.length; i++) { // 候選人名單
       candidateList[_candidateNames[i]] = true;
-    } 
+    }
     for (uint8 i = 0; i < _voters.length; i++) { // 投票的白名單
       voters[_voters[i]] = true;
     }
@@ -92,18 +90,18 @@ contract Voting {
 
 這個合約利用 bytes32 來作為候選者的名稱，投票者可以透過 `voteForCandidate()` ，直接輸入候選人的名稱進行投票。
 
-任何人都可以從 etherscan 上直接看見我在鏈上投票的[結果](https://goerli.etherscan.io/tx/0xb6cd91327376b63b8a2b1227ccc8b6a6b3ccc4141e5c4f303b7b80618dd22b86)，就是投給 *John*。
+任何人都可以從 etherscan 上直接看見我在鏈上投票的[結果](https://goerli.etherscan.io/tx/0xb6cd91327376b63b8a2b1227ccc8b6a6b3ccc4141e5c4f303b7b80618dd22b86)，就是投給 _John_。
 
 ```
 Function: voteForCandidate(bytes32 candidate) ***
 
 MethodID: 0xcc9ab267
-[0]:  0bfa36c40b8771f59912a8b06e3ba9cd68504e69345a0ebcb952c3c6100ec88e 
+[0]:  0bfa36c40b8771f59912a8b06e3ba9cd68504e69345a0ebcb952c3c6100ec88e
 (byte32 of keccak256("John"))
 ```
 
-- 😈 行賄者可以透過撰寫 script 抓取鏈上資料，或甚至可以直接透過智能合約來完成賄賂。
-- 🤑 受賄絡者可自行提供在鏈上投票的證明給 😈 行賄者。
+- 😈  行賄者可以透過撰寫 script 抓取鏈上資料，或甚至可以直接透過智能合約來完成賄賂。
+- 🤑  受賄絡者可自行提供在鏈上投票的證明給 😈  行賄者。
 
 這樣子使得在區塊鏈上進行投票變得非常困難，
 
@@ -112,18 +110,22 @@ MethodID: 0xcc9ab267
 ---
 
 ## MACI 流程：
+
 以下則會分成兩個流程講述：
 
 第一個是在較高層次（high-level）觀察投票流程，會利用一個例子來解釋 MACI 投票的流程，另一個流程則會解釋在投票時使用的技術（technical-level），本流程參考自此篇文章。
 
 ### High Level
+
 這邊會講述投票者如何與系統互動進行投票。
 **前提**：
 ⭐️ 整個系統中會有兩個身份：
+
 - 投票者（Voter）：可以將一組公鑰送入 contract 中，使自己的身份變成投票者。
 - 計票者（Coordinator）：系統中負責計票的角色，會進行計票的工作，其公鑰會公開讓所有人知道。
 
 ⭐️ **基本流程**：
+
 1. 註冊
 2. 投票（簽章與加密）
 3. 計票
@@ -131,6 +133,7 @@ MethodID: 0xcc9ab267
 **投票流程（實例）**：
 
 這個例子中有：
+
 - 三個投票者：Alice、Bob、Charlie，其公私鑰分別為 keyPairA: (pubKeyA, privKeyA)、keyPairB、keyPairC。
 - 一個計票者：David，其公私鑰分別為 pubKeyD（公開的資訊）、privKeyD（只有 David 知道）。
 
@@ -158,34 +161,36 @@ MethodID: 0xcc9ab267
 ⭐️ 在 MACI 中投票或更換公鑰等未加密之動作稱為指令（command），而加密後的資訊稱為訊息（message）。
 
 ⭐️ 加密流程：
+
 1. 將指令（傳入內容 msg）雜湊後得到 h。
 2. 利用系統給予的 EdDSA privKey ，將 h 進行簽章。
 3. 利用一個隨機產生的 ephemeral key 與計票者的 pubKey' 產生出一組 ECDH shared key - Ekey。
 4. 最後透過 Ekey 將簽章與指令中的 data 進行加密。（計票者可以透過他的 privKey' 解開）
 
 **投票流程**：
+
 1. 首先，計票者會將投票的合約部署到鏈上，並開始 sign-up 階段，會將他的 pubKey’ 公開地儲存在合約中。
-2. 在 sign-up 階段，系統會隨機產生一組 EdDSA 計算出的公私鑰對給予投票者，投票者需要保存自己的私鑰（privKey），並將公鑰（pubKey）傳到合約上進行註冊。**合約中會有一棵 Merkle Tree 紀錄整個投票者的註冊狀態、投票權重等（詳細可見圖X）**。
-    ![](https://i.imgur.com/LanzW4W.png)    
-    圖X、Sign-up 流程圖。
+2. 在 sign-up 階段，系統會隨機產生一組 EdDSA 計算出的公私鑰對給予投票者，投票者需要保存自己的私鑰（privKey），並將公鑰（pubKey）傳到合約上進行註冊。**合約中會有一棵 Merkle Tree 紀錄整個投票者的註冊狀態、投票權重等（詳細可見圖 X）**。
+   ![](https://i.imgur.com/LanzW4W.png)  
+   圖 X、Sign-up 流程圖。
 3. sign-up 階段結束，無法再加入其他的投票者，並進入投票階段。
 4. 投票時，投票者可以做兩種行為（這些行為都可以透過 `publishMessage()` 更新在合約中）：
-    1. 投票：
-        投票者投的資訊會經由下面的處理上傳至合約中，並將訊息儲存在一棵 Message Tree 中：
-        - 將指令（投票內容）雜湊後得到 hash。
-        - 利用系統給予的 EdDSA privKey ，將 hash 進行簽章。
-        - 利用一個隨機產生的 ephemeral key 與計票者的 pubKey’ 產生出一組 [ECDH](https://zh.wikipedia.org/wiki/%E6%A9%A2%E5%9C%93%E6%9B%B2%E7%B7%9A%E8%BF%AA%E8%8F%B2-%E8%B5%AB%E7%88%BE%E6%9B%BC%E9%87%91%E9%91%B0%E4%BA%A4%E6%8F%9B) shared key Ekey。（計票者可以透過他的）
-        - 最後透過 Ekey 將**簽章與指令中的 data 進行加密。**
-    2. 更改公鑰：
-        
-        若某人被 😈 行賄者逼迫投出非意願的票時，可以透過 publisgMessage 更改其公鑰，而更改的動作其實與投票類似，只是在一開始簽章時將傳入的投票訊息改成新的公鑰（newPubKey），更改後便可以用新的公鑰再進行投票了。
-        
-    
-    關於 message 的敘述可見圖Y。
-    
-    ![](https://i.imgur.com/129kbaI.png)
-    圖Y、來自 Vitalik 在 [ethresear 中提案](https://ethresear.ch/t/minimal-anti-collusion-infrastructure/5413)的內容。
-    
+
+   1. 投票：
+      投票者投的資訊會經由下面的處理上傳至合約中，並將訊息儲存在一棵 Message Tree 中：
+      - 將指令（投票內容）雜湊後得到 hash。
+      - 利用系統給予的 EdDSA privKey ，將 hash 進行簽章。
+      - 利用一個隨機產生的 ephemeral key 與計票者的 pubKey’ 產生出一組 [ECDH](https://zh.wikipedia.org/wiki/%E6%A9%A2%E5%9C%93%E6%9B%B2%E7%B7%9A%E8%BF%AA%E8%8F%B2-%E8%B5%AB%E7%88%BE%E6%9B%BC%E9%87%91%E9%91%B0%E4%BA%A4%E6%8F%9B) shared key Ekey。（計票者可以透過他的）
+      - 最後透過 Ekey 將**簽章與指令中的 data 進行加密。**
+   2. 更改公鑰：
+
+      若某人被 😈  行賄者逼迫投出非意願的票時，可以透過 publisgMessage 更改其公鑰，而更改的動作其實與投票類似，只是在一開始簽章時將傳入的投票訊息改成新的公鑰（newPubKey），更改後便可以用新的公鑰再進行投票了。
+
+   關於 message 的敘述可見圖 Y。
+
+   ![](https://i.imgur.com/129kbaI.png)
+   圖 Y、來自 Vitalik 在 [ethresear 中提案](https://ethresear.ch/t/minimal-anti-collusion-infrastructure/5413)的內容。
+
 5. 投票階段結束，計票者需要**解密與紀錄**所有人的票以統計結果。
 6. 避免計票者黑箱，在計票時會**使用 zk-snark 的 proof** 讓系統可以不透過公布投票者投出的票卷內容，但可以證實所有計票的公正性（類似實體投票時的唱票，在旁有投票者監督）。
 
@@ -200,32 +205,34 @@ MethodID: 0xcc9ab267
 **Tally：**用來證實**計票者計票的正確性，避免計票者黑箱。**
 
 ---
-## ECDH shared key 解釋
+
+## ECDH shared key  解釋
+
 > 在這邊我想簡單地解釋一下 ECDH 的概念，但是不會討論太深入的數學概念。
 
 在 ECDH 中的 DH 代表的是 Diffie-Hellman key exchange，兩位密碼學家創造了一個方法，可以在不安全通信通道中建立起一組「共享金鑰（shared key）」，且這個金鑰只會由雙方計算得出來，並可以使雙方在此通道下以此金鑰進行加密（encrypt）與解密（decrypt）的方法；而 EC 則代表橢圓曲線加密。
 
 下面來舉個例子，若有 Alice 與 Bob 想進行金鑰轉換，但是他們會通過一個公開的通道進行。
 
-1. 若 Alice 與 Bob說好使用特定的橢圓曲線，並使用他們知道的一基點 G 作為 generator。
-2. Alice 選擇一個私鑰 a，計算其公鑰 A = a * G，並將 A 傳給 Bob。
-3. Bob 也選擇一私鑰 b，計算其公鑰 B = b * G，也將 B 傳給 Alice。
-4. 這時，Alice 與 Bob 可以計算出一組只有他們知道的 shared key k = a * b * G（Alice ：得到 B = b * G，可以將其私鑰相乘即得到 k；反之亦然）
+1. 若 Alice 與 Bob 說好使用特定的橢圓曲線，並使用他們知道的一基點 G 作為 generator。
+2. Alice 選擇一個私鑰 a，計算其公鑰 A = a \* G，並將 A 傳給 Bob。
+3. Bob 也選擇一私鑰 b，計算其公鑰 B = b \* G，也將 B 傳給 Alice。
+4. 這時，Alice 與 Bob 可以計算出一組只有他們知道的 shared key k = a _ b _ G（Alice ：得到 B = b \* G，可以將其私鑰相乘即得到 k；反之亦然）
 5. 此時在公開的訊息中只會觀察到 A 與 B 兩組公鑰，而在此通道中的其他人因為無法獲得 a、b，因而無法得到 k。
 6. Alice 與 Bob 此時便可以使用 k 作為加密與解密的公鑰進行訊息交換。
- 
+
 MACI 中就是利用這種交換金鑰的方式來加密，即使是在一個公開的通道上（區塊鏈），也可以讓計票者可以透過共同金鑰計算投票者的訊息。
 
 更詳盡的名詞解釋可見[此](https://github.com/privacy-scaling-explorations/maci/blob/master/specs/01_introduction.md#glossary)。
 
-更詳盡的系統設計圖可見圖Z，並參見[此影片](https://youtu.be/sKuNj_IQVYI)。
+更詳盡的系統設計圖可見圖 Z，並參見[此影片](https://youtu.be/sKuNj_IQVYI)。
 
 ![](https://i.imgur.com/a5Uajfz.png)
-圖Z、MACI 的系統圖
+圖 Z、MACI 的系統圖
 
 ## 結論
 
-預防共謀在區塊鏈上是一件非常重要的事情，MACI 簡單的透過加密演算法的技術讓共謀這件事情變得困難，並且也利用 zkProof 來證實投票的正當性，在每個方面都思考的很縝密。但目前的架構中，仍有計票者與 😈 行賄者串通以得知 🤑 受賄者投的票（因此只能假設計票者為完全公正），或是只使用單一的 server 進行運算等缺陷。目前 MACI 的開發也在進行中，預計是要將其運算的架構改成 [MPC（Multiple-Party Computation）](https://en.wikipedia.org/wiki/Secure_multi-party_computation)。
+預防共謀在區塊鏈上是一件非常重要的事情，MACI 簡單的透過加密演算法的技術讓共謀這件事情變得困難，並且也利用 zkProof 來證實投票的正當性，在每個方面都思考的很縝密。但目前的架構中，仍有計票者與 😈  行賄者串通以得知 🤑  受賄者投的票（因此只能假設計票者為完全公正），或是只使用單一的 server 進行運算等缺陷。目前 MACI 的開發也在進行中，預計是要將其運算的架構改成 [MPC（Multiple-Party Computation）](https://en.wikipedia.org/wiki/Secure_multi-party_computation)。
 
 **這邊放幾個我在讀 doc 與看範例時遇到的問題**
 

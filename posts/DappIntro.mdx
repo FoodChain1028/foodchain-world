@@ -1,10 +1,13 @@
 ---
 title: How to use DappChef to enhance Solidity Skill?
 description: 大家好，我是來自 SWF Lab 的成員，[FoodChain](https://medium.com/@food-chain)！這篇文主要想要分享我們 Lab 最近製作的一項專案，希望可以分享給更多想學習 solidity 的人們。
-date: '2023-04-08'
+date: "2023-04-08"
 ---
-##  Dapp Chef 使用心得
-##  Preface
+
+## Dapp Chef 使用心得
+
+## Preface
+
 大家好，我是來自 SWF Lab 的成員，FoodChain！這篇文主要想要分享我們 Lab 最近製作的一項專案，希望可以分享給更多想學習 solidity 的人們。
 
 > 開始 DappChef 的動機
@@ -36,7 +39,8 @@ date: '2023-04-08'
 
 下面我會帶大家看一下 DappChef 的使用方式語介紹他的特色！
 
-##  DappChef 簡介
+## DappChef 簡介
+
 如果你還沒聽過 DappChef，他是類似 solidity 版本的 Leetcode，你可以在這個平台上面學習 Ethereum 的智能合約語言 -- solidity。
 
 > 🍩 DappChef is a Ethereum Smart Contract Development Learning platform, which is similar to Leetcode.
@@ -47,8 +51,10 @@ date: '2023-04-08'
 
 下面我來示範一次 DappChef 的解題流程
 
-##  使用情境（以解題為例）
-###  1. Sign in
+## 使用情境（以解題為例）
+
+### 1. Sign in
+
 （在打開之前，請確定你的瀏覽器有提供 Metamask 的 extension。若不知道 Metamask 是什麼，請前往[這個網站](https://metamask.io/download/)。）
 
 進入 [DappChef.com](https://dappchef.com) 後，你會看到一個很精美的封面動畫！
@@ -63,7 +69,8 @@ date: '2023-04-08'
 
 接下來你可以點下「Start」或是「向下」進入 **Problems** 的部分。
 
-###  2. 選題
+### 2. 選題
+
 ![](https://i.imgur.com/J22uI5z.png)
 
 在這個頁面中你可以看到四個分類：
@@ -77,7 +84,8 @@ date: '2023-04-08'
 
 這邊我選擇了第一題！
 
-###  3. 進入解題畫面的說明
+### 3. 進入解題畫面的說明
+
 在解題的畫面中，會有兩個主要的框框。
 
 > 第一個框框有著這題的資訊，像是 id、Tag、Title 與星星數。
@@ -96,7 +104,8 @@ date: '2023-04-08'
 
 > 這邊就交給大家自己完成這個題目吧！
 
-###  4. 解題完成
+### 4. 解題完成
+
 解題完成後，可以按下題目框右下角的 `Compile`。
 
 這時有任何錯誤都會在左方的 console 中印出來。
@@ -107,8 +116,8 @@ date: '2023-04-08'
 
 ![](https://i.imgur.com/qVYMEnu.png)
 
+### 5. Judge
 
-###  5. Judge
 成功 `Compile` 後，下方會出現 `Judge` 的 console 與按鈕。
 
 ![](https://i.imgur.com/87feBfZ.png)
@@ -116,21 +125,21 @@ date: '2023-04-08'
 按下 `Judge` 後，系統會跳出 Metamask，請你進行交易。這筆交易主要是為了將合約部署到 Goerli 鏈上，以便隨後的批改。
 
 若回答錯誤，錯誤資訊會出現在 `Judge` 的 console 中。
+
 ```bash
 Trying to deploy problem 1 with Deployer Contract:
     Tx successful with hash: 0xfe53fe43ef6db35bcf292a3fde302f08d5f3243376c77a53c0b90aecb4d74045
     Deployed contract address is 0xFF0D11f6A07891c423E05b187727150b264E0771
 
 Begin the Judging...
-    
+
 Testing 0: getUint()
-    - Sample Input: 
+    - Sample Input:
     - Sample Output: 0
     - Your Output: 12
     ...Wrong Answer!
 ✨  Done in 4.73s.
 ```
-
 
 如果回答正確後，你可以在 `Judge` 的 console 中看到下面的資訊。
 
@@ -140,36 +149,38 @@ Trying to deploy problem 1 with Deployer Contract:
     Deployed contract address is 0x42c3827135362D2048fe37f95F615c3438C02D5d
 
 Begin the Judging...
-    
+
 Testing 0: getUint()
-    - Sample Input: 
+    - Sample Input:
     - Sample Output: 0
     - Your Output: 0
     ...Accepted!
-    
+
 Testing 1: getBool()
-    - Sample Input: 
+    - Sample Input:
     - Sample Output: false
     - Your Output: false
     ...Accepted!
-    
+
 Testing 2: getAddress()
-    - Sample Input: 
+    - Sample Input:
     - Sample Output: 0x0000000000000000000000000000000000000000
     - Your Output: 0x0000000000000000000000000000000000000000
     ...Accepted!
-    
+
 Testing 3: getString()
-    - Sample Input: 
-    - Sample Output: 
-    - Your Output: 
+    - Sample Input:
+    - Sample Output:
+    - Your Output:
     ...Accepted!
 
 All Accepted!
 Total Used Gas: 0
 ✨  Done in 4.87s.
 ```
-###  6. Mint NFT！
+
+### 6. Mint NFT！
+
 在批改且全部通過後（代表你通過這題），頁面會跳出以下的畫面讓你去 mint。
 
 ![](https://i.imgur.com/KYJhG2F.png)
@@ -181,7 +192,8 @@ Total Used Gas: 0
 1. 作為「**解題成功的憑證**」，在 mint 後可以在「**Profile**」裡面看到。
 2. 紀錄解題的「**時間戳記**」，在 mint 時會自動紀錄解完題的時間戳記，紀錄你是在何時完成這一題的。
 
-###  7. 去 profile 查看你得到的 NFT
+### 7. 去 profile 查看你得到的 NFT
+
 成功 Mint 後會跳回主頁，此時你可以按右上角的「**Profile**」，在這個頁面中可以看到你自己的資訊。
 
 ![](https://i.imgur.com/xBKeq6I.png)
@@ -190,24 +202,26 @@ Total Used Gas: 0
 
 而最右面的 `User Info` 中有個圖表可以查看你目前一星、二星與三星的答題狀況。
 
-###  8. 查看 Dune 的資料
+### 8. 查看 Dune 的資料
+
 回到主頁，在 `Find Your Dune data here...` 這邊可以查看 DappChef 整體的答題狀況：總用戶數、總提交次數、平均完成題數、完成題數的級距與你目前與全部人的排名。
 
 ![](https://i.imgur.com/TZGdVZG.png)
 
 你也可以挑戰成為 User Rank 上的第一名！
 
+## Conclusion
 
-##  Conclusion
 最後統整一下我認為 DappChef 有哪些好處：
 
-##  For Learner
+## For Learner
+
 首先，對於學習者（尤其是學生）而言，我認為「免費」這件事是非常重要的。DappChef 提供了一個完全免費的環境，從 Deploy 到 Mint NFT 都是在測試鏈上進行，且也沒有任何一個地方會需要使用者付費。
 
-在 DappChef 上除了可以練習 solidity 的主要語法，其中也有需要進階的題目可以讓大家學習。另外其中也提供討論區（*可見 3.進入解題畫面的說明*）讓大家討論題目內容，在你毫無靈感的時候提供想法。
+在 DappChef 上除了可以練習 solidity 的主要語法，其中也有需要進階的題目可以讓大家學習。另外其中也提供討論區（_可見 3.進入解題畫面的說明_）讓大家討論題目內容，在你毫無靈感的時候提供想法。
 
-##  For Employer
+## For Employer
+
 > 這可能是我們最想透過 DappChef 達成的事情。
 
 一般大公司（Facebook、Google、Amazon 等）在篩選人才時，會將 Leetcode 作為他們的參考標準，例如 LeetCode 上的拿到的分數，或將類似的題目作為考題。但是在 web3/區塊鏈 的公司中尚未發展出這樣的一套標準與流程，因此我們也誠心希望 DappChef 能夠在未來可以幫助這些公司發展出篩選人才的標準。
-

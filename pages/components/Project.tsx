@@ -1,5 +1,5 @@
-import Divider from './Divider';
-import BtLine from './BtLine';
+import Divider from "./Divider";
+import BtLine from "./BtLine";
 
 export const Project = ({ project }: any): JSX.Element => {
   const title = project?.title;
@@ -9,20 +9,25 @@ export const Project = ({ project }: any): JSX.Element => {
   const skills = project?.skills;
 
   return (
-    <div>
-      <BtLine />
-      <h2 className="dark:text-white">
-        ({date}) <a href={link}>{title}</a>
-      </h2>
-      <p>{content}</p>
-      <b>Technique Used:</b>
-      <ul className="list-disc pl-4 my-2">
-        {skills && skills.map((item:string, i:number) => (
-          <li key={i+1}>{item}</li>
-        ))}
-      </ul>
-      <br />
-    </div>
+    <>
+      {project && (
+        <div>
+          <BtLine />
+          <h2 className="dark:text-white">
+            ({date}) <a href={link}>{title}</a>
+          </h2>
+          <p>{content}</p>
+          <b>Technique Used:</b>
+          <ul className="list-disc pl-4 my-2">
+            {skills &&
+              skills.map((item: string, i: number) => (
+                <li key={i + 1}>{item}</li>
+              ))}
+          </ul>
+          <br />
+        </div>
+      )}
+    </>
   );
 };
 

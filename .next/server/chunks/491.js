@@ -170,7 +170,7 @@ var external_next_themes_ = __webpack_require__(1162);
         onClick: ()=>setTheme(theme === "dark" ? "light" : "dark"),
         className: style_default().dynamic([
             [
-                "c65c1fbb4a576cce",
+                "fcb21d4cace200f2",
                 [
                     isDark ? "4px" : "2px",
                     color,
@@ -199,7 +199,7 @@ var external_next_themes_ = __webpack_require__(1162);
             /*#__PURE__*/ jsx_runtime_.jsx("div", {
                 className: style_default().dynamic([
                     [
-                        "c65c1fbb4a576cce",
+                        "fcb21d4cace200f2",
                         [
                             isDark ? "4px" : "2px",
                             color,
@@ -228,7 +228,7 @@ var external_next_themes_ = __webpack_require__(1162);
             /*#__PURE__*/ jsx_runtime_.jsx("div", {
                 className: style_default().dynamic([
                     [
-                        "c65c1fbb4a576cce",
+                        "fcb21d4cace200f2",
                         [
                             isDark ? "4px" : "2px",
                             color,
@@ -255,7 +255,7 @@ var external_next_themes_ = __webpack_require__(1162);
                 ]) + " " + "moon-mask"
             }),
             jsx_runtime_.jsx((style_default()), {
-                id: "c65c1fbb4a576cce",
+                id: "fcb21d4cace200f2",
                 dynamic: [
                     isDark ? "4px" : "2px",
                     color,

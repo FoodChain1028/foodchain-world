@@ -1,13 +1,13 @@
-import React from 'react';
-import Link from 'next/link';
-import Divider from './components/Divider';
-import Header from './components/Header';
-import Layout from '../components/Layout';
-import Top from './components/Top';
-import { format, parseISO } from 'date-fns';
-import { GetStaticProps } from 'next';
-import { getAllPosts } from '../lib/api';
-import { PostType } from '../types/post';
+import React from "react";
+import Link from "next/link";
+import Divider from "./components/Divider";
+import Header from "./components/Header";
+import Layout from "../components/Layout";
+import Top from "./components/Top";
+import { format, parseISO } from "date-fns";
+import { GetStaticProps } from "next";
+import { getAllPosts } from "../lib/api";
+import { PostType } from "../types/post";
 
 type ProjectsProps = {
   posts: PostType[];
@@ -21,7 +21,7 @@ export const Posts = ({ posts }: ProjectsProps): JSX.Element => {
         <>
           <article key={post.slug} className="mt-12">
             <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
-              {format(parseISO(post.date), 'MMMM dd, yyyy')}
+              {format(parseISO(post.date), "MMMM dd, yyyy")}
             </p>
             <h1 className="mb-2 text-xl">
               <Link as={`/posts/${post.slug}`} href={`/posts/[slug]`}>
@@ -45,9 +45,9 @@ export const Posts = ({ posts }: ProjectsProps): JSX.Element => {
     </Layout>
   );
 };
-  
+
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = getAllPosts(['date', 'description', 'slug', 'title']);
+  const posts = getAllPosts(["date", "description", "slug", "title"]);
 
   return {
     props: { posts },

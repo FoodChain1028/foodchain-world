@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/iEi3CgTv1vyMR4BNOa5Yd/_buildManifest.js",
-    "static/iEi3CgTv1vyMR4BNOa5Yd/_ssgManifest.js"
+    "static/VNV20xi9MHa9pWDhJzRM_/_buildManifest.js",
+    "static/VNV20xi9MHa9pWDhJzRM_/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
@@ -15,7 +15,7 @@
       "static/chunks/framework-4556c45dd113b893.js",
       "static/chunks/main-153ca532c98eee0d.js",
       "static/chunks/306-faf99b336d274355.js",
-      "static/chunks/pages/index-7e94a6397420d92f.js"
+      "static/chunks/pages/index-3ac36bdf1e6439bc.js"
     ],
     "/_app": [
       "static/chunks/webpack-9b312e20a4e32339.js",
@@ -52,7 +52,7 @@
       "static/chunks/webpack-9b312e20a4e32339.js",
       "static/chunks/framework-4556c45dd113b893.js",
       "static/chunks/main-153ca532c98eee0d.js",
-      "static/chunks/pages/components/Project-d13d9bd44f98b599.js"
+      "static/chunks/pages/components/Project-c43ac8dc55393bf5.js"
     ],
     "/components/Top": [
       "static/chunks/webpack-9b312e20a4e32339.js",
@@ -66,7 +66,7 @@
       "static/chunks/main-153ca532c98eee0d.js",
       "static/chunks/306-faf99b336d274355.js",
       "static/chunks/358-59e534127f537b93.js",
-      "static/chunks/pages/posts-041b4765a7b5cb21.js"
+      "static/chunks/pages/posts-f17d20186468eb5f.js"
     ],
     "/posts/[slug]": [
       "static/chunks/webpack-9b312e20a4e32339.js",
@@ -74,14 +74,14 @@
       "static/chunks/main-153ca532c98eee0d.js",
       "static/chunks/306-faf99b336d274355.js",
       "static/chunks/358-59e534127f537b93.js",
-      "static/chunks/pages/posts/[slug]-4bb972469043be32.js"
+      "static/chunks/pages/posts/[slug]-7d56ef00b8f0fda5.js"
     ],
     "/projects": [
       "static/chunks/webpack-9b312e20a4e32339.js",
       "static/chunks/framework-4556c45dd113b893.js",
       "static/chunks/main-153ca532c98eee0d.js",
       "static/chunks/306-faf99b336d274355.js",
-      "static/chunks/pages/projects-333bb26ec528ac36.js"
+      "static/chunks/pages/projects-4b89229b7bc8d9f5.js"
     ]
   },
   "ampFirstPages": []

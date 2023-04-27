@@ -1,6 +1,6 @@
 export const Top = (): JSX.Element => {
   const handleTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
   return (
     <>

@@ -1,12 +1,15 @@
 ---
 title: Cross-chain Transaction - HTLC
 description: 而此篇文章想要介紹一種在跨鏈交易中不須透過「第三方介入」的跨鏈方式 -- HTLC。
-date: '2022-12-01'
+date: "2022-12-01"
 ---
+
 ## 前言
+
 此系列文章想探討**何謂跨鏈交易**，並用一些產品幫助理解跨鏈交易是如何進行並如何實作。
 
 ## 何謂跨鏈交易、跨鏈橋？為何需要跨鏈？
+
 區塊鏈的生態系是一個**封閉的世界**，可以把它想像成一個在海洋中的孤島，島上的居民（節點）無法得知來自島外的資訊。
 
 或將區塊鏈的世界想像成我們的地球，每一個區塊鏈都是陸地，但是在區塊鏈們之間間隔著汪洋大海。就與真實世界相同，A 地擁有大量的礦山、石油，B 地擁有良好氣候可以種植糧食，C 地則擁有各種高科技技術，若是**有個交通方式讓這些地區的人們互相合作**，可以創造出一個更好的世界。
@@ -14,7 +17,9 @@ date: '2022-12-01'
 若兩條獨立的區塊鏈想要進行溝通（如資產交換），事實上是透過「**資訊的交換**」來達成目的。
 
 ## 如何交換資訊？
+
 ### 跨鏈橋分類
+
 跨鏈的方式目前常見的可分為四種：
 
 1. **Trusted Relayer**
@@ -28,18 +33,24 @@ date: '2022-12-01'
 > 此系列文章主要會介紹 **Trusted Relayer** 與 **HTLC** 這兩種交換方式。
 
 ## Trusted Relayer
-Trusted Relayer 指的是**幫助在區塊鏈之間傳遞訊息的中間者**。 
+
+Trusted Relayer 指的是**幫助在區塊鏈之間傳遞訊息的中間者**。
 
 本文會以 X swap 作為研究的對象。
+
 ### X swap protocol
+
 X swap 是一個由 XY Finance 提供的產品，是一種整合不同鏈上的 DEX 作為跨鏈交換的系統，它可以尋找與在不同鏈上 DEX 的最短交換路徑，節省以往繁多的交換步驟與手續費。
 
 ![](https://i.imgur.com/GmVlo6T.png)
 fig. 1 - X Swap display (sited from [XY finance](https://docs.xy.finance/products/x-swap/how-it-works))
 
 ### Swapper and Consensus
+
 在 X Swap 系統中有兩個角色：
+
 #### Swapper
+
 是在不同鏈上的 smart contracts，可以想像成一個錢包或是流動池，負責管理與暫存你在跨鏈交易進行時存入的資產。它也會幫助跨鏈交易的 routing，也就是尋找（項目方設計演算法中認為）最佳的跨鏈路徑，藉此尋找較佳的手續費。
 
 > 實際上與使用者接觸的只有 Swapper 這個合約（XY 在每個鏈上會部署不同的 Swapper 合約 ），在 Source Chain 的 Swapper 負責收待轉換的幣，Target Chain 的 Swapper 則負責轉交轉換後的幣。
@@ -56,22 +67,25 @@ fig. 1 - X Swap display (sited from [XY finance](https://docs.xy.finance/product
 3. 避免若 Swapper 存入各種資產後，可能發生資產的價格波動或是流動性割裂等狀況。
 
 #### Consensus (Validator Set)
-由許多來自不同組織的節點構成，負責驗證跨鏈流程中不受其他惡意節點控制。Consensus 會接受來自 source 的 Swapper 資訊（使用者的 request），並呼叫 target chain 的 Swapper 上的函式，最後再呼叫 source 中的函式完成跨鏈交易。 
+
+由許多來自不同組織的節點構成，負責驗證跨鏈流程中不受其他惡意節點控制。Consensus 會接受來自 source 的 Swapper 資訊（使用者的 request），並呼叫 target chain 的 Swapper 上的函式，最後再呼叫 source 中的函式完成跨鏈交易。
 
 > 在鏈上無法直接透過合約來呼叫合約，因此需要「有人」（EOA）來戳放在各個鏈上的合約，才能達到跨鏈訊息交換的目的。
 
 Consensus 可以分成兩個部分：
+
 - Executor:
-    - 負責 listen Source 端呼叫 `swap()` 時產生的 event，得到轉換的資訊。 
-    - 負責執行在 Target Swapper 的函式。
-    - 在驗證交易成功後（由 Validator 負責）將收到簽章，藉此收取在 Swapper 上儲存的資產。
+  - 負責 listen Source 端呼叫 `swap()` 時產生的 event，得到轉換的資訊。
+  - 負責執行在 Target Swapper 的函式。
+  - 在驗證交易成功後（由 Validator 負責）將收到簽章，藉此收取在 Swapper 上儲存的資產。
 - Validator:
-    - 負責驗證 Executor 在 Target Swapper 執行的結果是否符合要求（例如使用者收到的最低資產數量）
-    - 驗證成功後會發布一筆簽章給予 Executor，當作 Executor 的交易結果也可讓 Executor 取得在 Swapper 中的資產。
+  - 負責驗證 Executor 在 Target Swapper 執行的結果是否符合要求（例如使用者收到的最低資產數量）
+  - 驗證成功後會發布一筆簽章給予 Executor，當作 Executor 的交易結果也可讓 Executor 取得在 Swapper 中的資產。
 
 ![](https://i.imgur.com/ajGXANY.png)
 
 ### A Example of X Swap
+
 以 fig. 1 為例，Bob 現在錢包中有 1 枚在以太鏈中產生的 wBTC（wrapped BTC），他想要透過 X swap 交換在 BSC 上的 BNB。下述的號碼會對應到 fig.1 箭頭上的號碼。
 
 (1): Bob 透過 X swap 的前端輸入想要跨鏈交換的資產與大小，前端與 Swapper 會透過演算法去計算最佳轉換路徑，並收到 X Swap 的報價（3000 BNB，並接受 1% 的 slippage tolerance）。
@@ -90,15 +104,19 @@ Consensus 可以分成兩個部分：
 - slippage 可接受（BNB > 2970）：將扣去手續費的資金轉換成 BNB，並將這筆 BNB 轉到 Bob 在 BSC 上的地址。
 
 (6)、(7): 最後 XY Protocol 會在從 Source 端的 Swapper 取得 30000 USDT，完成整個跨鏈資產的轉換。
-  
+
 ### Smart Contract of Swapper
+
 以下會以 X Swap 的[智能合約](https://github.com/XY-Finance/xy-protocol/blob/master/contracts/Swapper.sol)，了解在 protocol 中是如何實現跨鏈交易的。
 
 #### safeERC20
+
 引用 Openzeppelin (OZ) 的 `SafeERC20.sol` 合約，其中的函式都是 safe 版的函式，像是`safeTransfer()`、`safeTransferFrom()` 等函式，在 `Swapper.sol` 中呼叫時可使用 `using SafeERC20 for IERC20`，如此便可以透過 `token.safeTransfer()` 來呼叫函式。
 
 #### SwapInfo
+
 合約中用 Struct 將跨鏈交換的資訊包裝起來，在 swap 的時候直接將整個 Struct 傳入即可。
+
 ```solidity
 struct SwapInfo {
     uint8 chainId;
@@ -108,16 +126,21 @@ struct SwapInfo {
     bytes swapData;
 }
 ```
+
 - chainId: 在哪條鏈上進行。
 - dex: swap 進行時要轉交資產的地址。
 - fromToken: 準備要被轉換的資產。
 - toToken: 準備要轉換成的資產。
 - swapData: 要傳送給 dex 的資訊。
+
 #### OneInch DEX & Anyswap
+
 Swapper 使用 OneInch 作為預設的 DEX，並透過 Anyswap V3 作為跨鏈上使用的媒介。
 
 #### 流程
+
 整個跨鏈交換的流程如下：
+
 1. user
 2. swapper
 3. proxy address
@@ -126,7 +149,9 @@ Swapper 使用 OneInch 作為預設的 DEX，並透過 Anyswap V3 作為跨鏈�
 6. target chain user address
 
 #### swap()
+
 `swap()` 的功能是將資產交給 Swapper 保管，
+
 ```solidity
 function swap(
     uint256 fromTokenAmount,
@@ -137,6 +162,7 @@ function swap(
 ```
 
 將資產交給 Swapper：
+
 ```solidity
 //... 省略
 uint256 _fromTokenBalance = getTokenBalance(fromToken);
@@ -156,17 +182,17 @@ if (swapInfos[i].dex == oneInchAggregator) {
     (bool success, ) = oneInchAggregator.call{value: msg.value}(swapInfos[i].swapData);
     require(success, "ERR_DEX_SWAP_FAILED");
     fromTokenAmount = getTokenBalance(toToken).sub(toTokenAmount);
-} 
+}
 
 else if (proxies[swapInfos[i].dex] || swapInfos[i].dex == receiver) {
     safeTransferAsset(swapInfos[i].dex, fromToken, fromTokenAmount);
-} 
+}
 
 else if (swapInfos[i].dex == anyswapRouter) {
     require(targetChainSwapInfo.length > 0, "ERR_TARGET_CHAIN_SWAP_INFO");
     approveToken(fromToken, anyswapRouter, fromTokenAmount);
     IAnyswapV3Router(anyswapRouter).anySwapOutUnderlying(anyTokenMapping[address(fromToken)], address(this), fromTokenAmount, targetChainSwapInfo[0].chainId);
-} 
+}
 
 else revert("ERR_INVALID_DEX");
 emit SourceChainSwap(swapId, msg.sender, swapInfos[i].chainId, swapInfos[i], fromTokenAmount);
@@ -175,7 +201,8 @@ emit SourceChainSwap(swapId, msg.sender, swapInfos[i].chainId, swapInfos[i], fro
 以下是測試 1 ETH 轉換成 BNB 的結果。
 ![](https://i.imgur.com/d9NQHMH.png)
 
-## 結語 
+## 結語
+
 在看過程式後，發現在 XY Finance git 中的 repo 似乎沒有關於 Consensus 方面的 code，不確定是我漏看了還是因為商業關係而沒有開源（若有錯誤請大方通知我，非常感謝！）。當然這部分不開源也十分合理，只是我十分好奇其中的機制與寫法。
 
 就以 Consensus （鏈與鏈之間之傳訊者）並不透明作為背景下，使用者只能完全信任項目方開發的程式不會出錯或是有不法份子涉入，跨鏈交換就會變得十分不安全且充滿風險。但在 Swapper 中也有用到 Anyswap Router 作為跨鏈交換的機制，因此可能並不完全是依靠第三方節點來做資訊交換。
@@ -184,8 +211,8 @@ emit SourceChainSwap(swapId, msg.sender, swapInfos[i].chainId, swapInfos[i], fro
 
 我認為身處 Web3 的使用者，應該要有如 Vitalik 所言「監管自己財產（self-custody）」的能力。我將其理解成用心看待自己的資產，用心了解每項產品背後可能存在的風險，並相信技術帶來的便利。
 
-
 ## Ref:
+
 - [跨鏈橋技術詳解](https://ithelp.ithome.com.tw/articles/10289212)
 - [Blockchain bridges](https://ethereum.org/en/bridges/)
 - [What are Cross-Chain Bridges?](https://www.alchemy.com/overviews/cross-chain-bridges)

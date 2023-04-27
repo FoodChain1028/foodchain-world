@@ -36,8 +36,8 @@ export const Projects = (): JSX.Element => {
       <div className="flex justify-center items-center">
         <h1>Projects</h1>
       </div>
-      {list.map((project, i) => {
-        const id = i + 1;
+      {list.map((project:any, i:number) => {
+        const id = i + 1;        
         return <Project project={project} key={id} />;
       })}
       <Top />

@@ -1,7 +1,7 @@
 import Divider from './Divider';
 import BtLine from './BtLine';
 
-export const Project = ({ project }): JSX.Element => {
+export const Project = ({ project }: any): JSX.Element => {
   const title = project?.title;
   const content = project?.content;
   const link = project?.link;
@@ -17,8 +17,8 @@ export const Project = ({ project }): JSX.Element => {
       <p>{content}</p>
       <b>Technique Used:</b>
       <ul className="list-disc pl-4 my-2">
-        {skills.map((i) => (
-          <li>{i}</li>
+        {skills && skills.map((item:string, i:number) => (
+          <li key={i+1}>{item}</li>
         ))}
       </ul>
       <br />

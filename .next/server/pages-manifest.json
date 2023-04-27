@@ -8,8 +8,8 @@
   "/components/Top": "pages/components/Top.html",
   "/projects": "pages/projects.html",
   "/_error": "pages/_error.js",
-  "/": "pages/index.js",
   "/posts": "pages/posts.js",
   "/posts/[slug]": "pages/posts/[slug].js",
+  "/": "pages/index.js",
   "/404": "pages/404.html"
 }

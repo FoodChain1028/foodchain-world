@@ -20,7 +20,7 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
         <h1>About Me</h1>
       </div>
       <div className="flex justify-center items-center">
-        <p>Foodchain && Blockchain</p>
+        <p>Foodchain && Blockchain.</p>
       </div>
       <div className="flex justify-center items-center flex-1">
         <div className="w-64 h-64">
@@ -133,10 +133,8 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
       {/*  Education */}
       <h2 className="dark:text-yellow-200">Education</h2>
       <br />
-      <h3>
-        {" "}
-        <b> Lectures </b>
-      </h3>
+      <b> NTU PPM (2019 ~ 2023) </b>
+      <b> Lectures: </b>
       <ul className="list-disc pl-4 my-6">
         <li>CSIE - Blockchain and Data Analysis</li>
         <li>EE - Cryptography</li>

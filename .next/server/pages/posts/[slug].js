@@ -70,7 +70,7 @@ const components = {
 };
 const PostPage = ({ source , frontMatter  })=>{
     const customMeta = {
-        title: `${frontMatter.title} - Hunter Chang`,
+        title: `${frontMatter.title} - FoodChain`,
         description: frontMatter.description,
         image: `${_components_Layout__WEBPACK_IMPORTED_MODULE_15__/* .WEBSITE_HOST_URL */ .Y}${frontMatter.image}`,
         date: frontMatter.date,

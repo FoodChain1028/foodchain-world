@@ -21,7 +21,7 @@ export const Posts = ({ posts }: ProjectsProps): JSX.Element => {
         <h1>Posts</h1>
       </div>
       <div className="flex justify-center items-center">
-        <p>Donate me.</p>
+        <p>{`Donate me.( Click my name on the top ⬆️ )`}</p>
       </div>
       {posts.map((post) => (
         <>

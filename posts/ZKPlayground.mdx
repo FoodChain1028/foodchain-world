@@ -1,14 +1,15 @@
 ---
 title: zkVaxCard
-description: zkVaxCard 是一個可以幫助人們在「不揭露任何個人資訊如身分證字號、個人照片或健保卡卡號」之情況下「證明自己有接種過疫苗」之系統，以 React.js 為前端開發的框架、json-server 作為一個非常臨時的後端資料庫，並以 Semaphore protocol 作為其背後的零知識證明技術
+description: zkVaxCard 是一個可以幫助人們在「不揭露任何個人資訊如身分證字號、個人照片或健保卡卡號」之情況下「證明自己有接種過疫苗」之系統，以 React.js 為前端開發的框架、json-server 作為一個非常臨時的後端資料庫，並以 Semaphore protocol 作為其背後的零知識證明技術。
 date: "2023-02-08"
 ---
 
 ## ZKPlayground Project
 
-_zkVaxCard_
+zkVaxCard
 
-> _Author: Fu-Chuan Chung @ swfLAB_ > _感謝 @Paul review 此篇文章_
+> Author: Fu-Chuan Chung @ swfLAB 
+> 感謝 @Paul review 此篇文章
 
 ## 目錄
 
@@ -22,9 +23,9 @@ _zkVaxCard_
 
 ## 前言
 
-> 前情提要：我們的原本主題想使用 SBT（Soul Bound Token）、semaphore 及 Tornato Cash 背後之零知識證明技術，但後來因時間與能力問題更改成最後的專案。
+> 前情提要：我們的原本主題想使用 SBT (Soul Bound Token) 、semaphore 及 Tornato Cash 背後之零知識證明技術，但後來因時間與能力問題更改成最後的專案。
 
-ZKPlayground 是由以太坊基金會在背後推動的活動，內容包含講師教授零知識相關知識與應用，而本文會介紹關於 SWF Lab 參加成員（Foodchain、yanlong、nooma、iver）四人在此活動中完成的一項專案 - **zkVaxCard**。
+ZKPlayground 是由以太坊基金會在背後推動的活動，內容包含講師教授零知識相關知識與應用，而本文會介紹關於 SWF Lab 參加成員 (Foodchain、yanlong、nooma、iver) 四人在此活動中完成的一項專案 - **zkVaxCard**。
 
 ## 簡介
 
@@ -41,8 +42,8 @@ ZKPlayground 是由以太坊基金會在背後推動的活動，內容包含講�
 
 在 semaphore 中有幾個重要的元素：
 
-1. **identity**：一組身份，其中由三個部分組成： 🌚 nullifier、🌚 trapdoor 與 🌝 commitment。可以把它想像成在 Ethereum 上的一個私鑰（nullifier & trapdoor）與地址（commitment）的關係。
-2. **Group**：semaphore 利用 incremental binary Merkle Tree，來儲存在某一團體中的每一個身份（意指每一個 Merkle Leaf 都是一個 `identity`）。在鏈上，每一棵樹都會擁有自己的編號（group id）與樹高（tree depth）。
+1. **identity**：一組身份，其中由三個部分組成： 🌚 nullifier、🌚 trapdoor 與 🌝 commitment。可以把它想像成在 Ethereum 上的一個私鑰 (nullifier & trapdoor) 與地址 (commitment) 的關係。
+2. **Group**：semaphore 利用 incremental binary Merkle Tree，來儲存在某一團體中的每一個身份 (意指每一個 Merkle Leaf 都是一個 `identity`) 。在鏈上，每一棵樹都會擁有自己的編號 (group id) 與樹高 (tree depth) 。
 3. **ZKproof**：擁有 identity 並且加入一組 group 後，便可以用 circuit 來計算出一段 ZKproof。透過傳送這段 proof 到鏈上的合約，便可以「**不揭露自己的地址**」但卻能「**證明自己是存在於某個團體之中**」
 
 Semaphore 已經用 circom 寫好他們的 circuit，詳見 _fig. 1_。
@@ -54,9 +55,9 @@ fig. 1 Circuits in semaphore by [Cedoor](https://github.com/cedoor)
 
 舉例來說，semaphore 可以用來建立一個投票系統：
 
-投票者可以透過 semaphore 取得一組 🌚 `identity`（`nullifier` & `trapdoor`），利用一串 secret 計算出一個 🌝 commitment，並將此 🌝 commitment 存入在鏈上的 Merkle Tree（Group），同時計算出一個新的 Merkle Root。接著，當投票的時候，投票者則需要透過 semaphore 產生出 ZKProof，隨後將投票資訊、groupId、Merkle Root、ZKproof 等資料提交到在鏈上的 `verifyProof()`，便可以驗證投票者的身份，並在鏈上公開的紀錄投票結果了。
+投票者可以透過 semaphore 取得一組 🌚 `identity` (`nullifier` & `trapdoor`) ，利用一串 secret 計算出一個 🌝 commitment，並將此 🌝 commitment 存入在鏈上的 Merkle Tree (Group) ，同時計算出一個新的 Merkle Root。接著，當投票的時候，投票者則需要透過 semaphore 產生出 ZKProof，隨後將投票資訊、groupId、Merkle Root、ZKproof 等資料提交到在鏈上的 `verifyProof()`，便可以驗證投票者的身份，並在鏈上公開的紀錄投票結果了。
 
-Semaphore 也利用了一個變數 external nullifier 來避免 double signaling （例：同一組身份但是投兩次票）的問題，可以把它想像成在 ethereum 交易中的 nonce。
+Semaphore 也利用了一個變數 external nullifier 來避免 double signaling  (例：同一組身份但是投兩次票) 的問題，可以把它想像成在 ethereum 交易中的 nonce。
 
 ## Verication Flow
 
@@ -67,26 +68,26 @@ fig. 2 System design of zkVaxCard
 
 整個系統我們分成兩個部分：
 
-- 注射的醫師或單位（Doctor/ Government）：醫生在進行注射後需要將接種者加進對應的 group 中。
-- 接種者（Vaxxer）：想要提出自己有接種過疫苗的人。
+- 注射的醫師或單位 (Doctor/ Government) ：醫生在進行注射後需要將接種者加進對應的 group 中。
+- 接種者 (Vaxxer) ：想要提出自己有接種過疫苗的人。
 
 > 在我們的疫苗注射卡上面會有醫院證明、醫師蓋章等資訊來證實這張卡的真偽；另外也避免一般人也可以隨意 `addMember()` 的情況，因此需要由認證後醫師的 address 才能執行 `addMember()`。
 
-**步驟**（參考 _fig. 2_ 中的 **Step 1 ~ 8**）：
+**步驟** (參考 _fig. 2_ 中的 **Step 1 ~ 8**) ：
 
 前提：
 
-- 醫師端需要設定一組白名單（裡面會存放 Ethereum 上的 address）。
+- 醫師端需要設定一組白名單 (裡面會存放 Ethereum 上的 address) 。
 - 下面的故事發生在一個接種者打完疫苗後。
 
 1. 醫師登入自己的 address，透過白名單認證後便可以執行。
-2. 醫師會請接種者輸入一串只有自己知道的密碼（帳號為身分證字號），系統會講這串資訊 parse 並進行 hash，得到 h，製造一組新的 `Identity(h)`。（像是在銀行設定提款機密碼一樣）
+2. 醫師會請接種者輸入一串只有自己知道的密碼 (帳號為身分證字號) ，系統會講這串資訊 parse 並進行 hash，得到 h，製造一組新的 `Identity(h)`。 (像是在銀行設定提款機密碼一樣) 
 3. 醫師按下 `addMember` 的按鈕，此時由 semaphore 計算得到的 commitment 會送到已建立的合約中，存放在鏈上的對應的 Merkle Tree。
-4. 同時我們的 database 中也會儲存關於此 commitment 的資訊（包含 groupId、nonce、commitment）。
+4. 同時我們的 database 中也會儲存關於此 commitment 的資訊 (包含 groupId、nonce、commitment) 。
 5. 當接種者想要提出證明時，會輸入自己的帳號密碼，zkVaxCard 會透過儲存的資訊來檢查是否有這組 identity。
-6. 認證 identity 後，會透過一組存在系統中的私鑰來與鏈上合約進行交易（此步的目的是為了不揭露接種者地址），傳送 groupId、Merkle Root、ZKproof 等資訊到 `verify()` 中進行驗證。
-7. 透過 semaphore 的 `verifyProof()`，可以進行此 identity 是否在 group 的驗證，若成功（回傳 True），則顯示 Successfully Verified。
-8. 驗證者（像是店家或政府機關）則可以參考驗證成功的畫面進行驗證。
+6. 認證 identity 後，會透過一組存在系統中的私鑰來與鏈上合約進行交易 (此步的目的是為了不揭露接種者地址) ，傳送 groupId、Merkle Root、ZKproof 等資訊到 `verify()` 中進行驗證。
+7. 透過 semaphore 的 `verifyProof()`，可以進行此 identity 是否在 group 的驗證，若成功 (回傳 True) ，則顯示 Successfully Verified。
+8. 驗證者 (像是店家或政府機關) 則可以參考驗證成功的畫面進行驗證。
 
 ## 技術解析
 
@@ -120,7 +121,7 @@ const identityCommitment = identity.generateCommitment().toString();
 這樣的做法有兩個主要目的：
 
 1. 使用者每次都可以使用自己記得住的密碼來做 verify。
-2. 使用者不需要記住兩串很長的字串（nullifier 與 trapdoor 兩者都是 bytes31）
+2. 使用者不需要記住兩串很長的字串 (nullifier 與 trapdoor 兩者都是 bytes31) 
 
 ---
 
@@ -198,10 +199,10 @@ $ /Users/foodchain/Documents/swf_lab/ZKP/zkVaxCard/frontend/node_modules/.bin/js
 3. nullifierHash
 4. ZKProof
 
-下面我們就用盡洪荒之力生出這幾個參數（？），但其實其中最重要的就是 **Merkle Root**。
+下面我們就用盡洪荒之力生出這幾個參數 (？) ，但其實其中最重要的就是 **Merkle Root**。
 
 這邊的方法由 @ChiHaoLu 提供 🙏：
-首先要去 Goerli（你部署的鏈）上的 semaphore 合約（在 Goerli 為[0x5259d32659F1806ccAfcE593ED5a89eBAb85262f](https://goerli.etherscan.io/address/0x5259d32659F1806ccAfcE593ED5a89eBAb85262f)）。
+首先要去 Goerli (你部署的鏈) 上的 semaphore 合約 (在 Goerli 為[0x5259d32659F1806ccAfcE593ED5a89eBAb85262f](https://goerli.etherscan.io/address/0x5259d32659F1806ccAfcE593ED5a89eBAb85262f)) 。
 
 透過 ABI 來取得 function selector，並取得其 Merkle Root：
 
@@ -283,9 +284,9 @@ const { proof, merkleTreeRoot, nullifierHash } = await generateProof(
 
 ## 結論
 
-雖然在已經開放後的台灣，zkVaxCard 似乎有點過時，但是我認爲它也可以應用在一些其他的領域，像是財產證明、修課證書、能力證書、會員制度等。可以不洩漏使用者的隱私（像是銀行帳號），提出具有公信力的證明。
+雖然在已經開放後的台灣，zkVaxCard 似乎有點過時，但是我認爲它也可以應用在一些其他的領域，像是財產證明、修課證書、能力證書、會員制度等。可以不洩漏使用者的隱私 (像是銀行帳號) ，提出具有公信力的證明。
 
-另外我認為 password 更安全的做法是利用一組 EdDSA/EcDSA 產生的私鑰，將自己設定的密碼做簽章，並將此作為 seed，但是在開發上可能須考慮**便利性問題**（如使用者需要記住的東西有多少），才能**真正讓這些應用實施在現實生活中**。
+另外我認為 password 更安全的做法是利用一組 EdDSA/EcDSA 產生的私鑰，將自己設定的密碼做簽章，並將此作為 seed，但是在開發上可能須考慮**便利性問題** (如使用者需要記住的東西有多少) ，才能**真正讓這些應用實施在現實生活中**。
 
 ## References
 

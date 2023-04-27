@@ -2,7 +2,7 @@
 (() => {
 var exports = {};
 exports.id = 679;
-exports.ids = [679,682,791];
+exports.ids = [679,791,682];
 exports.modules = {
 
 /***/ 9722:
@@ -46,10 +46,16 @@ const Posts = ({ posts  })=>{
                     children: "Posts"
                 })
             }),
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                className: "flex justify-center items-center",
+                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                    children: "Donate me."
+                })
+            }),
             posts.map((post)=>/*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
                     children: [
                         /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("article", {
-                            className: "mt-12",
+                            className: "mt-10",
                             children: [
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                                     className: "mb-1 text-sm text-gray-500 dark:text-gray-400",

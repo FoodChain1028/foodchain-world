@@ -12,7 +12,7 @@ export const Project = ({ project }: any): JSX.Element => {
     <>
       {project && (
         <div>
-          <BtLine />
+          
           <h2 className="dark:text-white">
             ({date}) <a href={link}>{title}</a>
           </h2>
@@ -25,6 +25,7 @@ export const Project = ({ project }: any): JSX.Element => {
               ))}
           </ul>
           <br />
+          <BtLine />
         </div>
       )}
     </>

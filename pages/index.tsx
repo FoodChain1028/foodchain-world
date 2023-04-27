@@ -19,6 +19,9 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
       <div className="flex justify-center items-center">
         <h1>About Me</h1>
       </div>
+      <div className="flex justify-center items-center">
+        <p>Foodchain && Blockchain</p>
+      </div>
       <div className="flex justify-center items-center flex-1">
         <div className="w-64 h-64">
           <img

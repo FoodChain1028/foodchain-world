@@ -20,9 +20,12 @@ export const Posts = ({ posts }: ProjectsProps): JSX.Element => {
       <div className="flex justify-center items-center">
         <h1>Posts</h1>
       </div>
+      <div className="flex justify-center items-center">
+        <p>Donate me.</p>
+      </div>
       {posts.map((post) => (
         <>
-          <article key={post.slug} className="mt-12">
+          <article key={post.slug} className="mt-10">
             <p className="mb-1 text-sm text-gray-500 dark:text-gray-400">
               {format(parseISO(post.date), "MMMM dd, yyyy")}
             </p>

@@ -2,7 +2,7 @@
 (() => {
 var exports = {};
 exports.id = 405;
-exports.ids = [405,682,791];
+exports.ids = [405,791,682];
 exports.modules = {
 
 /***/ 5075:
@@ -38,6 +38,12 @@ const Index = ({ posts  })=>{
                 className: "flex justify-center items-center",
                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
                     children: "About Me"
+                })
+            }),
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                className: "flex justify-center items-center",
+                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
+                    children: "Foodchain && Blockchain"
                 })
             }),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {

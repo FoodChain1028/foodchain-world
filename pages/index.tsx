@@ -16,7 +16,9 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
   return (
     <Layout>
       <Header />
-      <h2 className="dark:text-yellow-200">About me</h2>
+      <div className="flex justify-center items-center">
+        <h1>About Me</h1>
+      </div>
       <div className="flex justify-center items-center flex-1">
         <div className="w-64 h-64">
           <img

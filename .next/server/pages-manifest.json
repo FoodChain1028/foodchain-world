@@ -4,12 +4,12 @@
   "/components/BtLine": "pages/components/BtLine.html",
   "/components/Divider": "pages/components/Divider.html",
   "/components/Header": "pages/components/Header.html",
+  "/_error": "pages/_error.js",
   "/components/Project": "pages/components/Project.html",
   "/components/Top": "pages/components/Top.html",
   "/projects": "pages/projects.html",
-  "/_error": "pages/_error.js",
-  "/posts": "pages/posts.js",
   "/": "pages/index.js",
   "/posts/[slug]": "pages/posts/[slug].js",
+  "/posts": "pages/posts.js",
   "/404": "pages/404.html"
 }

@@ -17,6 +17,9 @@ export const Posts = ({ posts }: ProjectsProps): JSX.Element => {
   return (
     <Layout>
       <Header />
+      <div className="flex justify-center items-center">
+        <h1>Posts</h1>
+      </div>
       {posts.map((post) => (
         <>
           <article key={post.slug} className="mt-12">

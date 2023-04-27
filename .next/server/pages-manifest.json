@@ -1,6 +1,5 @@
 {
   "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/components/BtLine": "pages/components/BtLine.html",
   "/components/Divider": "pages/components/Divider.html",
@@ -8,8 +7,9 @@
   "/components/Project": "pages/components/Project.html",
   "/components/Top": "pages/components/Top.html",
   "/projects": "pages/projects.html",
+  "/_error": "pages/_error.js",
   "/posts": "pages/posts.js",
-  "/posts/[slug]": "pages/posts/[slug].js",
   "/": "pages/index.js",
+  "/posts/[slug]": "pages/posts/[slug].js",
   "/404": "pages/404.html"
 }

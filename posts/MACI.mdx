@@ -146,7 +146,7 @@ MethodID: 0xcc9ab267
 7. 最後，當投票時間結束時，計票人 David 會從合約將每張票 (簽章 & 加密後的資訊 )抓下來，計算結果，並產生一段 zk proof 到合約上以更新票數。
 
 ![](https://i.imgur.com/N5ZzWOd.png)
-圖一、MACI 投票的簡化流程圖
+*圖一、MACI 投票的簡化流程圖*
 
 透過 MACI，除了可以保護 Alice 的隱私 (只有計票者可以解密並紀錄 Alice 的投票結果 )，也可以提高賄賂的難度，使**共謀在 MACI 建立的投票系統下變的窒礙難行**。
 
@@ -170,9 +170,9 @@ MethodID: 0xcc9ab267
 **投票流程**：
 
 1. 首先，計票者會將投票的合約部署到鏈上，並開始 sign-up 階段，會將他的 pubKey’ 公開地儲存在合約中。
-2. 在 sign-up 階段，系統會隨機產生一組 EdDSA 計算出的公私鑰對給予投票者，投票者需要保存自己的私鑰 (privKey )，並將公鑰 (pubKey )傳到合約上進行註冊。**合約中會有一棵 Merkle Tree 紀錄整個投票者的註冊狀態、投票權重等 (詳細可見圖 X )**。
+2. 在 sign-up 階段，系統會隨機產生一組 EdDSA 計算出的公私鑰對給予投票者，投票者需要保存自己的私鑰 (privKey )，並將公鑰 (pubKey )傳到合約上進行註冊。**合約中會有一棵 Merkle Tree 紀錄整個投票者的註冊狀態、投票權重等 (詳細可見圖二 )**。
    ![](https://i.imgur.com/LanzW4W.png)  
-   圖 X、Sign-up 流程圖。
+   *圖二、Sign-up 流程圖。*
 3. sign-up 階段結束，無法再加入其他的投票者，並進入投票階段。
 4. 投票時，投票者可以做兩種行為 (這些行為都可以透過 `publishMessage()` 更新在合約中 )：
 
@@ -186,10 +186,10 @@ MethodID: 0xcc9ab267
 
       若某人被 😈  行賄者逼迫投出非意願的票時，可以透過 publisgMessage 更改其公鑰，而更改的動作其實與投票類似，只是在一開始簽章時將傳入的投票訊息改成新的公鑰 (newPubKey )，更改後便可以用新的公鑰再進行投票了。
 
-   關於 message 的敘述可見圖 Y。
+   關於 message 的敘述可見圖三。
 
    ![](https://i.imgur.com/129kbaI.png)
-   圖 Y、來自 Vitalik 在 [ethresear 中提案](https://ethresear.ch/t/minimal-anti-collusion-infrastructure/5413)的內容。
+   *圖三、來自 Vitalik 在 [ethresear 中提案](https://ethresear.ch/t/minimal-anti-collusion-infrastructure/5413)的內容。*
 
 5. 投票階段結束，計票者需要**解密與紀錄**所有人的票以統計結果。
 6. 避免計票者黑箱，在計票時會**使用 zk-snark 的 proof** 讓系統可以不透過公布投票者投出的票卷內容，但可以證實所有計票的公正性 (類似實體投票時的唱票，在旁有投票者監督 )。
@@ -225,10 +225,10 @@ MACI 中就是利用這種交換金鑰的方式來加密，即使是在一個公
 
 更詳盡的名詞解釋可見[此](https://github.com/privacy-scaling-explorations/maci/blob/master/specs/01_introduction.md#glossary)。
 
-更詳盡的系統設計圖可見圖 Z，並參見[此影片](https://youtu.be/sKuNj_IQVYI)。
+更詳盡的系統設計圖可見圖四，並參見[此影片](https://youtu.be/sKuNj_IQVYI)。
 
 ![](https://i.imgur.com/a5Uajfz.png)
-圖 Z、MACI 的系統圖
+圖四、MACI 的系統圖
 
 ## 結論
 

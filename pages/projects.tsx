@@ -8,11 +8,19 @@ import { id } from "date-fns/locale";
 export const Projects = (): JSX.Element => {
   const list = [
     {
-      title: "DappChef",
-      content: `This is solidity-version leetcode built by SWF Lab. My job was mainly focus on construction and testing of the Reward NFT Contract and problem design in the system. In Addition, I also designed the dashboard which enable instructors to check out students' scores.`,
-      date: "2023 Apr.",
-      skills: ["Typescript", "Solidity", "Hardhat", "React"],
-      link: "https://dappchef.com",
+      title: "Privacy Preserved SBT Voting System",
+      content: "This system integrates Soul-Bound Token and zk-Voting, aiming to build a voting system with privacy and transparency.",
+      date: "2023 May",
+      skills: ["Javascript", "Solidity", "circom", "snarkjs", "React"],
+      link: "https://github.com/FoodChain1028/SBT-based-zkVoting-System",
+    },
+    {
+      title: "Server Listening System",
+      content:
+        "It is a system regularly listening the error event from the main server. If there is any error happens in main server, it would send alarm message to the manager through line notify and email.",
+      date: "2023 May",
+      skills: ["Javascript", "MUI", "express", "SMTP", "line-notify"],
+      link: "(private)",
     },
     {
       title: "Discord GPT Bot",
@@ -24,10 +32,17 @@ export const Projects = (): JSX.Element => {
     },
     {
       title: "zkVaxCard",
-      content: `This project is based on a ZKProof protocol -- Semaphore. Users are able to prove their vax record without revealing their own information, which extremely protects people's privacy.`,
-      date: "2023 Dec.",
+      content: "This project is based on a ZKProof protocol -- Semaphore. Users are able to prove their vax record without revealing their own information, which extremely protects people's privacy.",
+      date: "2022 Dec.",
       skills: ["Javascript", "Solidity", "Semaphore", "ZKSNARK", "React"],
       link: "https://github.com/FoodChain1028/zkVaxCard",
+    },
+    {
+      title: "DappChef",
+      content: "This is solidity-version leetcode built by SWF Lab. My job was mainly focus on construction and testing of the Reward NFT Contract and problem design in the system. In Addition, I also designed the dashboard which enable instructors to check out students' scores.",
+      date: "2023 Apr.",
+      skills: ["Typescript", "Solidity", "Hardhat", "React"],
+      link: "https://dappchef.com",
     },
   ];
   return (

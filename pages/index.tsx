@@ -41,13 +41,7 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
       </p>
 
       <p>
-        As a blockchain developer, I am passionate about delving into all
-        aspects of blockchain technology 🛵. Currently, my focus is on
-        understanding the underlying mechanisms of the Ethereum Virtual Machine
-        (EVM) and developing projects related to Zero-Knowledge Succinct
-        Non-Interactive Argument of Knowledge (ZK-SNARK⚡️). I strive to
-        continually improve my skills and knowledge in the field of blockchain
-        development.
+        I am still a student pursuing my MSc degree of Information Technology in University of Glasgow. I am extremely interested in cryptography and especially zero knowledge proof systems 🛵. Currently I have a open-sourced project called `social-tw`, which is a anonymous social media built on Unirep protocol. I have contributed several issues on PSE team in Ethereuem Foundation and I will continue to do researches and contributions in zk in the open-source project/ community. 
       </p>
 
       <p>
@@ -130,10 +124,11 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
       </ul>
 
       <Divider />
+
       {/*  Education */}
       <h2 className="dark:text-yellow-200">Education</h2>
       <br />
-      <b> NTU PPM (2019 ~ 2023) </b>
+      <b> NTU BS PPM (2019 ~ 2023) </b>
       <b> Lectures: </b>
       <ul className="list-disc pl-4 my-6">
         <li>CSIE - Blockchain and Data Analysis</li>
@@ -142,11 +137,29 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
         <li>EE - Web Programming</li>
         <li>IM - Programming Design</li>
       </ul>
+      <b> UoG MSc IT (2023 ~ 2024) </b>
+      <ul className="list-disc pl-4 my-6">
+        <li>CS - Programming (JAVA) </li>
+      </ul>
+
+      <b> MOOC </b>
+      <ul className="list-disc pl-4 my-6">
+        <li> <a href="https://zk-learning.org/">ZKP MOOC</a></li>
+      </ul>
 
       <Divider />
       {/* Experiences */}
       <h2 className="dark:text-yellow-200">Experience</h2>
+
       <ul className="list-disc pl-4 my-6">
+        <li>
+          2023 Jun. ~ 2023 Sep. -- Cohort{" "}
+          <i>@PSE Summer Contribution</i>
+        </li>
+        <li>
+          2023 Jun. ~ Present -- Contributor in Social-tw{" "}
+          <i>@Taiwan Community</i>
+        </li>
         <li>
           2023 Feb. ~ 2023 May. -- Software Engineer Intern{" "}
           <i>@Create Intelligens Inc.</i>

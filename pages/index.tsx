@@ -1,4 +1,3 @@
-import { format, parseISO } from "date-fns";
 import { GetStaticProps } from "next";
 import React from "react";
 import Top from "./components/Top";
@@ -25,7 +24,7 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
       <div className="flex justify-center items-center flex-1">
         <div className="w-64 h-64">
           <img
-            src="https://imgur.com/3R78UN8.png"
+            src="https://i.imgur.com/Z99nTyQ.jpg"
             alt="foodchain"
             className="w-full h-full object-contain"
           />
@@ -41,7 +40,7 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
       </p>
 
       <p>
-        I am still a student pursuing my MSc degree of Information Technology in University of Glasgow. I am extremely interested in cryptography and especially zero knowledge proof systems 🛵. Currently I have a open-sourced project called `social-tw`, which is a anonymous social media built on Unirep protocol. I have contributed several issues on PSE team in Ethereuem Foundation and I will continue to do researches and contributions in zk in the open-source project/ community. 
+        I am still a student pursuing my MSc degree of Software Development in University of Glasgow. I am interested in zero knowledge and am researching on several topic by myself 🛵. I am currently working on 2 projects: `social-tw` and `mopro`.
       </p>
 
       <p>
@@ -77,6 +76,7 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
       </ul>
 
       <Divider />
+      
       <h2 className="dark:text-yellow-200">Contact</h2>
       <br />
       <p>
@@ -139,7 +139,11 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
       </ul>
       <b> UoG MSc IT (2023 ~ 2024) </b>
       <ul className="list-disc pl-4 my-6">
-        <li>CS - Programming (JAVA) </li>
+        <li> COMSCI - Programming </li>
+        <li> COMSCI - Advanced Programming </li>
+        <li> COMSCI - Data Structures & Alogrithms </li>
+        <li> COMSCI - Internet Technology </li>
+        <li> COMSCI - Cryptography Development </li>
       </ul>
 
       <b> MOOC </b>
@@ -152,6 +156,10 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
       <h2 className="dark:text-yellow-200">Experience</h2>
 
       <ul className="list-disc pl-4 my-6">
+        <li>
+          2024 Jan. ~ 2023 Feb. -- Grantee{" "}
+          <i>@PSE Mopro</i>
+        </li>
         <li>
           2023 Jun. ~ 2023 Sep. -- Cohort{" "}
           <i>@PSE Summer Contribution</i>
@@ -174,11 +182,11 @@ export const Index = ({ posts }: IndexProps): JSX.Element => {
       <h2 className="dark:text-yellow-200">Awards</h2>
       <ul className="list-disc pl-4 my-6">
         <li>
-          2022 Dec. -- (Silver) Roadmap to DApp Developer{" "}
+          2022 Dec. -- Roadmap to DApp Developer{" "}
           <i>@IT-30-day challenge contest</i>
         </li>
         <li>
-          2022 Oct. -- (Second Prize) LW3DAO Voting System{" "}
+          2022 Oct. -- LW3DAO Voting System{" "}
           <i>@Hacktomount 3.0 Hackathon</i>
         </li>
       </ul>

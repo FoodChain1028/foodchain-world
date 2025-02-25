@@ -11,3 +11,18 @@ node_modules/
 
 # Ignore macOS system files
 .DS_Store
+
+# Next.js build output
+.next
+out
+
+# Local env files
+.env*.local
+.env
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts

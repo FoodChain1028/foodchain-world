@@ -1,8 +1,7 @@
 import React from "react";
 import { MetaProps } from "../types/layout";
 import Head from "./Head";
-import Navigation from "./Navigation";
-import ThemeSwitch from "./ThemeSwitch";
+import Header from "./Header";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -15,29 +14,12 @@ const Layout = ({ children, customMeta }: LayoutProps): JSX.Element => {
   return (
     <>
       <Head customMeta={customMeta} />
-      <header>
-        <div className="max-w-5xl px-8 mx-auto">
-          <div className="flex items-center justify-between py-6">
-            <Navigation />
-            <ThemeSwitch />
-          </div>
-        </div>
-      </header>
-      <main>
-        <div className="max-w-5xl px-8 py-4 mx-auto">{children}</div>
-      </main>
-      <footer className="py-8  flex justify-center items-center">
-        <div className="max-w-5xl px-8 mx-auto">
-          <i>
-            {" "}
-            Shout out to author of this template -{" "}
-            <a
-              className="text-gray-900 dark:text-white"
-              href="https://twitter.com/hunterhchang"
-            >
-              Hunter Chang
-            </a>
-          </i>
+      <Header />
+      {children}
+      <footer className="fixed bottom-0 w-full bg-[#1e1e1e] border-t border-[#2d2d2d] py-2">
+        <div className="max-w-5xl px-8 mx-auto text-center text-gray-400 text-sm font-mono">
+          <span className="text-gray-500">// </span>
+          <a href="https://x.com/@zk_foodchain" target="_blank" rel="noopener noreferrer" className="text-[#4ec9b0] hover:opacity-80">@zk_foodchain</a>
         </div>
       </footer>
     </>

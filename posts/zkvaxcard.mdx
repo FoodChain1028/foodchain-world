@@ -1,7 +1,8 @@
 ---
 title: zkVaxCard
-description: zkVaxCard 是一個可以幫助人們在「不揭露任何個人資訊如身分證字號、個人照片或健保卡卡號」之情況下「證明自己有接種過疫苗」之系統，以 React.js 為前端開發的框架、json-server 作為一個非常臨時的後端資料庫，並以 Semaphore protocol 作為其背後的零知識證明技術。
+description: zkVaxCard 是一個可以幫助人們在「不揭露任何個人資訊如身分證字號、個人照片或健保卡卡號」之情況下「證明自己有接種過疫苗」之系統。
 date: "2023-02-08"
+tag: zk, cryptography, 中文
 ---
 
 ## ZKPlayground Project
@@ -37,12 +38,12 @@ ZKPlayground 是由以太坊基金會在背後推動的活動，內容包含講�
 
 [Semaphore](https://semaphore.appliedzkp.org/) 是在以太坊生態上開發的 ZKP 相關 project 之一，可以透過 ZKP 來完成身份的認證。
 
-- private: 🌚
-- public: 🌝
+- private: 
+- public: 
 
 在 semaphore 中有幾個重要的元素：
 
-1. **identity**：一組身份，其中由三個部分組成： 🌚 nullifier、🌚 trapdoor 與 🌝 commitment。可以把它想像成在 Ethereum 上的一個私鑰 (nullifier & trapdoor) 與地址 (commitment) 的關係。
+1. **identity**：一組身份，其中由三個部分組成：  nullifier、  trapdoor 與  commitment。可以把它想像成在 Ethereum 上的一個私鑰 (nullifier & trapdoor) 與地址 (commitment) 的關係。
 2. **Group**：semaphore 利用 incremental binary Merkle Tree，來儲存在某一團體中的每一個身份 (意指每一個 Merkle Leaf 都是一個 `identity`) 。在鏈上，每一棵樹都會擁有自己的編號 (group id) 與樹高 (tree depth) 。
 3. **ZKproof**：擁有 identity 並且加入一組 group 後，便可以用 circuit 來計算出一段 ZKproof。透過傳送這段 proof 到鏈上的合約，便可以「**不揭露自己的地址**」但卻能「**證明自己是存在於某個團體之中**」
 
@@ -55,7 +56,7 @@ fig. 1 Circuits in semaphore by [Cedoor](https://github.com/cedoor)
 
 舉例來說，semaphore 可以用來建立一個投票系統：
 
-投票者可以透過 semaphore 取得一組 🌚 `identity` (`nullifier` & `trapdoor`) ，利用一串 secret 計算出一個 🌝 commitment，並將此 🌝 commitment 存入在鏈上的 Merkle Tree (Group) ，同時計算出一個新的 Merkle Root。接著，當投票的時候，投票者則需要透過 semaphore 產生出 ZKProof，隨後將投票資訊、groupId、Merkle Root、ZKproof 等資料提交到在鏈上的 `verifyProof()`，便可以驗證投票者的身份，並在鏈上公開的紀錄投票結果了。
+投票者可以透過 semaphore 取得一組  `identity` (`nullifier` & `trapdoor`) ，利用一串 secret 計算出一個  commitment，並將此  commitment 存入在鏈上的 Merkle Tree (Group) ，同時計算出一個新的 Merkle Root。接著，當投票的時候，投票者則需要透過 semaphore 產生出 ZKProof，隨後將投票資訊、groupId、Merkle Root、ZKproof 等資料提交到在鏈上的 `verifyProof()`，便可以驗證投票者的身份，並在鏈上公開的紀錄投票結果了。
 
 Semaphore 也利用了一個變數 external nullifier 來避免 double signaling  (例：同一組身份但是投兩次票) 的問題，可以把它想像成在 ethereum 交易中的 nonce。
 
@@ -201,7 +202,7 @@ $ /Users/foodchain/Documents/swf_lab/ZKP/zkVaxCard/frontend/node_modules/.bin/js
 
 下面我們就用盡洪荒之力生出這幾個參數 (？) ，但其實其中最重要的就是 **Merkle Root**。
 
-這邊的方法由 @ChiHaoLu 提供 🙏：
+這邊的方法由 @ChiHaoLu 提供 ：
 首先要去 Goerli (你部署的鏈) 上的 semaphore 合約 (在 Goerli 為[0x5259d32659F1806ccAfcE593ED5a89eBAb85262f](https://goerli.etherscan.io/address/0x5259d32659F1806ccAfcE593ED5a89eBAb85262f)) 。
 
 透過 ABI 來取得 function selector，並取得其 Merkle Root：

@@ -18,10 +18,6 @@ import { MetaProps } from "../../types/layout";
 import { PostType } from "../../types/post";
 import { postFilePaths, POSTS_PATH } from "../../utils/mdxUtils";
 
-// Custom components/renderers to pass to MDX.
-// Since the MDX files aren't loaded by webpack, they have no knowledge of how
-// to handle import statements. Instead, you must include components in scope
-// here.
 const components = {
   Head,
   Image,
@@ -33,6 +29,19 @@ type PostPageProps = {
   frontMatter: PostType;
 };
 
+const LineNumbers = () => {
+  const numbers = Array.from({ length: 32 }, (_, i) => i + 1);
+  return (
+    <div className="fixed left-0 top-0 bottom-0 w-12 flex flex-col items-end pr-3 text-gray-500 select-none font-mono text-sm pt-20 bg-[#1e1e1e] border-r border-[#2d2d2d]">
+      {numbers.map((num) => (
+        <div key={num} className="leading-6">
+          {num}
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const PostPage = ({ source, frontMatter }: PostPageProps): JSX.Element => {
   const customMeta: MetaProps = {
     title: `${frontMatter.title} - FoodChain`,
@@ -41,19 +50,50 @@ const PostPage = ({ source, frontMatter }: PostPageProps): JSX.Element => {
     date: frontMatter.date,
     type: "article",
   };
+  
   return (
     <Layout customMeta={customMeta}>
-      <article>
-        <h1 className="mb-3 text-gray-900 dark:text-white">
-          {frontMatter.title}
-        </h1>
-        <p className="mb-10 text-sm text-gray-500 dark:text-gray-400">
-          {format(parseISO(frontMatter.date), "MMMM dd, yyyy")}
-        </p>
-        <div className="prose dark:prose-dark">
-          <MDXRemote {...source} components={components} />
+      <nav className="fixed top-0 w-full bg-[#1e1e1e] p-4 z-50 border-b border-[#2d2d2d] font-mono">
+        <div className="flex items-center space-x-6 text-sm">
+          <div className="text-gray-400">// foodchain</div>
+          <div className="text-[#4ec9b0]">.dev</div>
+          <a href="/" className="text-[#569cd6] hover:opacity-80">._home</a>
+          <a href="/resume" className="text-[#dcdcaa] hover:opacity-80">._resume</a>
+          <a href="/posts" className="text-[#c586c0] hover:opacity-80">._posts</a>
+          <a href="/projects" className="text-[#4fc1ff] hover:opacity-80">._projects</a>
         </div>
-      </article>
+      </nav>
+
+      <main className="min-h-screen bg-[#1e1e1e] text-white pt-20 font-mono">
+        <div className="relative">
+          <LineNumbers />
+          <div className="pl-16 pr-4">
+            <div className="max-w-4xl mx-auto">
+              <article>
+                <div className="mb-8">
+                  <div className="text-gray-400 mb-2">// {format(parseISO(frontMatter.date), "MMMM dd, yyyy")}</div>
+                  <h1 className="text-3xl text-[#dcdcaa] mb-4">{frontMatter.title}</h1>
+                  {frontMatter.description && (
+                    <p className="text-gray-400 text-lg">/* {frontMatter.description} */</p>
+                  )}
+                </div>
+                
+                <div className="prose prose-lg dark:prose-dark max-w-none">
+                  <div className="bg-[#2d2d2d] rounded-lg p-6 markdown-content">
+                    <MDXRemote {...source} components={components} />
+                  </div>
+                </div>
+                
+                <div className="mt-8 pt-8 border-t border-[#2d2d2d]">
+                  <Link href="/posts">
+                    <a className="text-[#569cd6] hover:text-[#4fc1ff]">← Back to Posts</a>
+                  </Link>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </main>
     </Layout>
   );
 };
@@ -65,7 +105,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { content, data } = matter(source);
 
   const mdxSource = await serialize(content, {
-    // Optionally pass remark/rehype plugins
     mdxOptions: {
       remarkPlugins: [remarkGfm],
       rehypePlugins: [
@@ -96,9 +135,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = postFilePaths
-    // Remove file extensions for page paths
     .map((path) => path.replace(/\.mdx?$/, ""))
-    // Map the path into the static paths object required by Next.js
     .map((slug) => ({ params: { slug } }));
 
   return {

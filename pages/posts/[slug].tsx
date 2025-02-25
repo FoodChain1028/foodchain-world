@@ -53,17 +53,6 @@ const PostPage = ({ source, frontMatter }: PostPageProps): JSX.Element => {
   
   return (
     <Layout customMeta={customMeta}>
-      <nav className="fixed top-0 w-full bg-[#1e1e1e] p-4 z-50 border-b border-[#2d2d2d] font-mono">
-        <div className="flex items-center space-x-6 text-sm">
-          <div className="text-gray-400">// foodchain</div>
-          <div className="text-[#4ec9b0]">.dev</div>
-          <a href="/" className="text-[#569cd6] hover:opacity-80">._home</a>
-          <a href="/resume" className="text-[#dcdcaa] hover:opacity-80">._resume</a>
-          <a href="/posts" className="text-[#c586c0] hover:opacity-80">._posts</a>
-          <a href="/projects" className="text-[#4fc1ff] hover:opacity-80">._projects</a>
-        </div>
-      </nav>
-
       <main className="min-h-screen bg-[#1e1e1e] text-white pt-20 font-mono">
         <div className="relative">
           <LineNumbers />
@@ -106,11 +95,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const mdxSource = await serialize(content, {
     mdxOptions: {
-      remarkPlugins: [remarkGfm],
+      remarkPlugins: [[remarkGfm]],
       rehypePlugins: [
         rehypeSlug,
         rehypeCodeTitles,
-        rehypePrism,
+        [rehypePrism, { ignoreMissing: true }],
         [
           rehypeAutolinkHeadings,
           {
@@ -120,7 +109,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
           },
         ],
       ],
-      format: "mdx",
     },
     scope: data,
   });

@@ -50,7 +50,7 @@ const PostPage = ({ source, frontMatter }: PostPageProps): JSX.Element => {
     date: frontMatter.date,
     type: "article",
   };
-  
+
   return (
     <Layout customMeta={customMeta}>
       <main className="min-h-screen bg-[#1e1e1e] text-white pt-20 font-mono">
@@ -60,22 +60,30 @@ const PostPage = ({ source, frontMatter }: PostPageProps): JSX.Element => {
             <div className="max-w-4xl mx-auto">
               <article>
                 <div className="mb-8">
-                  <div className="text-gray-400 mb-2">// {format(parseISO(frontMatter.date), "MMMM dd, yyyy")}</div>
-                  <h1 className="text-3xl text-[#dcdcaa] mb-4">{frontMatter.title}</h1>
+                  <div className="text-gray-400 mb-2">
+                    // {format(parseISO(frontMatter.date), "MMMM dd, yyyy")}
+                  </div>
+                  <h1 className="text-3xl text-[#dcdcaa] mb-4">
+                    {frontMatter.title}
+                  </h1>
                   {frontMatter.description && (
-                    <p className="text-gray-400 text-lg">/* {frontMatter.description} */</p>
+                    <p className="text-gray-400 text-lg">
+                      /* {frontMatter.description} */
+                    </p>
                   )}
                 </div>
-                
+
                 <div className="prose prose-lg dark:prose-dark max-w-none">
                   <div className="bg-[#2d2d2d] rounded-lg p-6 markdown-content">
                     <MDXRemote {...source} components={components} />
                   </div>
                 </div>
-                
+
                 <div className="mt-8 pt-8 border-t border-[#2d2d2d]">
                   <Link href="/posts">
-                    <a className="text-[#569cd6] hover:text-[#4fc1ff]">← Back to Posts</a>
+                    <a className="text-[#569cd6] hover:text-[#4fc1ff]">
+                      ← Back to Posts
+                    </a>
                   </Link>
                 </div>
               </article>

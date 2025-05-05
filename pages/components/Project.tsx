@@ -12,7 +12,6 @@ export const Project = ({ project }: any): JSX.Element => {
     <>
       {project && (
         <div>
-          
           <h2 className="dark:text-white">
             ({date}) <a href={link}>{title}</a>
           </h2>

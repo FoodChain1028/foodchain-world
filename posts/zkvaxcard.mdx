@@ -9,7 +9,7 @@ tag: zk, cryptography, 中文
 
 zkVaxCard
 
-> Author: Fu-Chuan Chung @ swfLAB 
+> Author: Fu-Chuan Chung @ swfLAB
 > 感謝 @Paul review 此篇文章
 
 ## 目錄
@@ -38,12 +38,12 @@ ZKPlayground 是由以太坊基金會在背後推動的活動，內容包含講�
 
 [Semaphore](https://semaphore.appliedzkp.org/) 是在以太坊生態上開發的 ZKP 相關 project 之一，可以透過 ZKP 來完成身份的認證。
 
-- private: 
-- public: 
+- private:
+- public:
 
 在 semaphore 中有幾個重要的元素：
 
-1. **identity**：一組身份，其中由三個部分組成：  nullifier、  trapdoor 與  commitment。可以把它想像成在 Ethereum 上的一個私鑰 (nullifier & trapdoor) 與地址 (commitment) 的關係。
+1. **identity**：一組身份，其中由三個部分組成： nullifier、 trapdoor 與 commitment。可以把它想像成在 Ethereum 上的一個私鑰 (nullifier & trapdoor) 與地址 (commitment) 的關係。
 2. **Group**：semaphore 利用 incremental binary Merkle Tree，來儲存在某一團體中的每一個身份 (意指每一個 Merkle Leaf 都是一個 `identity`) 。在鏈上，每一棵樹都會擁有自己的編號 (group id) 與樹高 (tree depth) 。
 3. **ZKproof**：擁有 identity 並且加入一組 group 後，便可以用 circuit 來計算出一段 ZKproof。透過傳送這段 proof 到鏈上的合約，便可以「**不揭露自己的地址**」但卻能「**證明自己是存在於某個團體之中**」
 
@@ -56,9 +56,9 @@ fig. 1 Circuits in semaphore by [Cedoor](https://github.com/cedoor)
 
 舉例來說，semaphore 可以用來建立一個投票系統：
 
-投票者可以透過 semaphore 取得一組  `identity` (`nullifier` & `trapdoor`) ，利用一串 secret 計算出一個  commitment，並將此  commitment 存入在鏈上的 Merkle Tree (Group) ，同時計算出一個新的 Merkle Root。接著，當投票的時候，投票者則需要透過 semaphore 產生出 ZKProof，隨後將投票資訊、groupId、Merkle Root、ZKproof 等資料提交到在鏈上的 `verifyProof()`，便可以驗證投票者的身份，並在鏈上公開的紀錄投票結果了。
+投票者可以透過 semaphore 取得一組 `identity` (`nullifier` & `trapdoor`) ，利用一串 secret 計算出一個 commitment，並將此 commitment 存入在鏈上的 Merkle Tree (Group) ，同時計算出一個新的 Merkle Root。接著，當投票的時候，投票者則需要透過 semaphore 產生出 ZKProof，隨後將投票資訊、groupId、Merkle Root、ZKproof 等資料提交到在鏈上的 `verifyProof()`，便可以驗證投票者的身份，並在鏈上公開的紀錄投票結果了。
 
-Semaphore 也利用了一個變數 external nullifier 來避免 double signaling  (例：同一組身份但是投兩次票) 的問題，可以把它想像成在 ethereum 交易中的 nonce。
+Semaphore 也利用了一個變數 external nullifier 來避免 double signaling (例：同一組身份但是投兩次票) 的問題，可以把它想像成在 ethereum 交易中的 nonce。
 
 ## Verication Flow
 
@@ -82,7 +82,7 @@ fig. 2 System design of zkVaxCard
 - 下面的故事發生在一個接種者打完疫苗後。
 
 1. 醫師登入自己的 address，透過白名單認證後便可以執行。
-2. 醫師會請接種者輸入一串只有自己知道的密碼 (帳號為身分證字號) ，系統會講這串資訊 parse 並進行 hash，得到 h，製造一組新的 `Identity(h)`。 (像是在銀行設定提款機密碼一樣) 
+2. 醫師會請接種者輸入一串只有自己知道的密碼 (帳號為身分證字號) ，系統會講這串資訊 parse 並進行 hash，得到 h，製造一組新的 `Identity(h)`。 (像是在銀行設定提款機密碼一樣)
 3. 醫師按下 `addMember` 的按鈕，此時由 semaphore 計算得到的 commitment 會送到已建立的合約中，存放在鏈上的對應的 Merkle Tree。
 4. 同時我們的 database 中也會儲存關於此 commitment 的資訊 (包含 groupId、nonce、commitment) 。
 5. 當接種者想要提出證明時，會輸入自己的帳號密碼，zkVaxCard 會透過儲存的資訊來檢查是否有這組 identity。
@@ -122,7 +122,7 @@ const identityCommitment = identity.generateCommitment().toString();
 這樣的做法有兩個主要目的：
 
 1. 使用者每次都可以使用自己記得住的密碼來做 verify。
-2. 使用者不需要記住兩串很長的字串 (nullifier 與 trapdoor 兩者都是 bytes31) 
+2. 使用者不需要記住兩串很長的字串 (nullifier 與 trapdoor 兩者都是 bytes31)
 
 ---
 

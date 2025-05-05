@@ -54,7 +54,7 @@ fig. 1 - X Swap display (sited from [XY finance](https://docs.xy.finance/product
 
 是在不同鏈上的 smart contracts，可以想像成一個錢包或是流動池，負責管理與暫存你在跨鏈交易進行時存入的資產。它也會幫助跨鏈交易的 routing，也就是尋找 (項目方設計演算法中認為 )最佳的跨鏈路徑，藉此尋找較佳的手續費。
 
-> 實際上與使用者接觸的只有 Swapper 這個合約 (XY 在每個鏈上會部署不同的 Swapper 合約  )，在 Source Chain 的 Swapper 負責收待轉換的幣，Target Chain 的 Swapper 則負責轉交轉換後的幣。
+> 實際上與使用者接觸的只有 Swapper 這個合約 (XY 在每個鏈上會部署不同的 Swapper 合約 )，在 Source Chain 的 Swapper 負責收待轉換的幣，Target Chain 的 Swapper 則負責轉交轉換後的幣。
 
 一個 Swapper 的組成部件如下：
 ![](https://i.imgur.com/rq8FdsX.png)
@@ -95,7 +95,7 @@ Consensus 可以分成兩個部分：
 
 (2): Swapper 將此 1 wBTC 在 Source Chain 上的 DEX 轉換成 30000 USDT。
 
-(3): 運行中的節點 (Consensus )會偵測到此 request，並尋找成功兌換的機會。找到後便會送出一個 request 給 Target Chain Swapper，希望 Swapper 透過在 Target Chain 上的 DEX，將 30000 USDT  (原本就存在 Swapper 身上的 USDT )轉換成 BNB，並儲存於 Swapper 上。
+(3): 運行中的節點 (Consensus )會偵測到此 request，並尋找成功兌換的機會。找到後便會送出一個 request 給 Target Chain Swapper，希望 Swapper 透過在 Target Chain 上的 DEX，將 30000 USDT (原本就存在 Swapper 身上的 USDT )轉換成 BNB，並儲存於 Swapper 上。
 
 (4)、(5): Swapper 與 Target Chain 上的 DEX 執行交換的動作。在第一步有提到 slippage tolerance (ST)，指的是當 slippage 超過 ST 時，將會導致 swap 失敗，此時會將在 Target Chain 上的穩定幣直接轉給使用者，讓使用者再使用其他方式交換。
 
@@ -206,7 +206,7 @@ emit SourceChainSwap(swapId, msg.sender, swapInfos[i].chainId, swapInfos[i], fro
 
 在看過程式後，發現在 XY Finance git 中的 repo 似乎沒有關於 Consensus 方面的 code，不確定是我漏看了還是因為商業關係而沒有開源 (若有錯誤請大方通知我，非常感謝！ )。當然這部分不開源也十分合理，只是我十分好奇其中的機制與寫法。
 
-就以 Consensus  (鏈與鏈之間之傳訊者 )並不透明作為背景下，使用者只能完全信任項目方開發的程式不會出錯或是有不法份子涉入，跨鏈交換就會變得十分不安全且充滿風險。但在 Swapper 中也有用到 Anyswap Router 作為跨鏈交換的機制，因此可能並不完全是依靠第三方節點來做資訊交換。
+就以 Consensus (鏈與鏈之間之傳訊者 )並不透明作為背景下，使用者只能完全信任項目方開發的程式不會出錯或是有不法份子涉入，跨鏈交換就會變得十分不安全且充滿風險。但在 Swapper 中也有用到 Anyswap Router 作為跨鏈交換的機制，因此可能並不完全是依靠第三方節點來做資訊交換。
 
 上述提到的不透明化 (中心化 )並不等同於完全危險，它也帶來一定程度的使用者體驗 (像是可以快速的跨鏈轉換、或是減少使用者在使用產品時需得到的資訊量 )；而去中心化也不一定完全安全，可能存在 smart contract bug 導致駭客竊取資產的情況。
 

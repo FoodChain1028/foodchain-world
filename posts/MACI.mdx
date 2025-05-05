@@ -25,7 +25,7 @@ Special thanks to @ for reviewing this article
 
 - 簡介
 - 共謀
-- MACI higher-level  (基礎 )
+- MACI higher-level (基礎 )
 - MACI technical-level (深入 )
 - 結論
 
@@ -147,7 +147,7 @@ MethodID: 0xcc9ab267
 7. 最後，當投票時間結束時，計票人 David 會從合約將每張票 (簽章 & 加密後的資訊 )抓下來，計算結果，並產生一段 zk proof 到合約上以更新票數。
 
 ![](https://i.imgur.com/N5ZzWOd.png)
-*圖一、MACI 投票的簡化流程圖*
+_圖一、MACI 投票的簡化流程圖_
 
 透過 MACI，除了可以保護 Alice 的隱私 (只有計票者可以解密並紀錄 Alice 的投票結果 )，也可以提高賄賂的難度，使**共謀在 MACI 建立的投票系統下變的窒礙難行**。
 
@@ -173,7 +173,7 @@ MethodID: 0xcc9ab267
 1. 首先，計票者會將投票的合約部署到鏈上，並開始 sign-up 階段，會將他的 pubKey’ 公開地儲存在合約中。
 2. 在 sign-up 階段，系統會隨機產生一組 EdDSA 計算出的公私鑰對給予投票者，投票者需要保存自己的私鑰 (privKey )，並將公鑰 (pubKey )傳到合約上進行註冊。**合約中會有一棵 Merkle Tree 紀錄整個投票者的註冊狀態、投票權重等 (詳細可見圖二 )**。
    ![](https://i.imgur.com/LanzW4W.png)  
-   *圖二、Sign-up 流程圖。*
+   _圖二、Sign-up 流程圖。_
 3. sign-up 階段結束，無法再加入其他的投票者，並進入投票階段。
 4. 投票時，投票者可以做兩種行為 (這些行為都可以透過 `publishMessage()` 更新在合約中 )：
 
@@ -190,7 +190,7 @@ MethodID: 0xcc9ab267
    關於 message 的敘述可見圖三。
 
    ![](https://i.imgur.com/129kbaI.png)
-   *圖三、來自 Vitalik 在 [ethresear 中提案](https://ethresear.ch/t/minimal-anti-collusion-infrastructure/5413)的內容。*
+   _圖三、來自 Vitalik 在 [ethresear 中提案](https://ethresear.ch/t/minimal-anti-collusion-infrastructure/5413)的內容。_
 
 5. 投票階段結束，計票者需要**解密與紀錄**所有人的票以統計結果。
 6. 避免計票者黑箱，在計票時會**使用 zk-snark 的 proof** 讓系統可以不透過公布投票者投出的票卷內容，但可以證實所有計票的公正性 (類似實體投票時的唱票，在旁有投票者監督 )。
@@ -253,6 +253,6 @@ Videos
 Articles
 
 - [MACI - Barry WhiteHat, Kendrick Tan, Kobi Gurkan, and Koh Wei Jie](https://hackmd.io/@OFccBlU5TNCiRhpIyT1m7g/SkXv-gO5r#Introduction)
-- [MACI spec](https://github.com/appliedzkp/maci/tree/master/specs)  (MACI 關於每個部分的說明 )
+- [MACI spec](https://github.com/appliedzkp/maci/tree/master/specs) (MACI 關於每個部分的說明 )
 - [動手實作零知識 - circom](https://medium.com/cryptocow/%E5%8B%95%E6%89%8B%E5%AF%A6%E5%81%9A%E9%9B%B6%E7%9F%A5%E8%AD%98-circom-d7ac1fa8bbd3)
 - [Circom & Snarkjs](https://medium.com/swf-lab/circom-snarkjs-728e4314e057)

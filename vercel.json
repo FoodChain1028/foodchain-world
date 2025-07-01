@@ -6,7 +6,7 @@
       },
       {
         "source": "/blogs/:path*",
-        "destination": "https://cfc-blog-u68y.vercel.app/:path*"
+        "destination": "https://cfc-blog-u68y.vercel.app/blogs/:path*"
       }
     ]
 }

@@ -1,0 +1,12 @@
+{
+    "rewrites": [
+      {
+        "source": "/blogs",
+        "destination": "https://cfc-blog-u68y.vercel.app/"
+      },
+      {
+        "source": "/blogs/:path*",
+        "destination": "https://cfc-blog-u68y.vercel.app/:path*"
+      }
+    ]
+}
